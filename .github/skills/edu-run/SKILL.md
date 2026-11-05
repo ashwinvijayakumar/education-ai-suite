@@ -66,8 +66,10 @@ Run from `smart-classroom/Windows`.
 | Stop | See below. |
 
 To stop, end only the processes listening on Smart Classroom's ports, then its
-own UI dev server. Don't stop by port 5173: the AI Teaching Assistant's dev
-server can be listening on it at the same time.
+own UI dev server and NPU monitor. The backend starts the NPU monitor
+(`npu_utilization.exe`) as a child process; it has no port and keeps running
+after the backend is stopped. Don't stop by port 5173: the AI Teaching
+Assistant's dev server can be listening on it at the same time.
 
 ```powershell
 $ports = 8000, 9011, 9090, 9990, 8001, 9012, 9902, 8554, 8888, 8889
@@ -76,6 +78,9 @@ Get-NetTCPConnection -State Listen -LocalPort $ports -ErrorAction SilentlyContin
   ForEach-Object { Stop-Process -Id $_ -Force }
 Get-CimInstance Win32_Process -Filter "Name='node.exe'" |
   Where-Object CommandLine -like '*smart-classroom\Windows\ui\*' |
+  ForEach-Object { Stop-Process -Id $_.ProcessId -Force }
+Get-CimInstance Win32_Process -Filter "Name='npu_utilization.exe'" |
+  Where-Object ExecutablePath -like '*smart-classroom\Windows\monitoring\*' |
   ForEach-Object { Stop-Process -Id $_.ProcessId -Force }
 ```
 
