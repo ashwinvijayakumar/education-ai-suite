@@ -5,10 +5,12 @@ description: >
   Classroom browser UI and desktop app (React, Vite, Electron), the Smart
   Classroom Linux UI, the AI Teaching Assistant UI (React, Vite, Tailwind), or
   the Flutter RAG demo. Finds the right files and API client, keeps backend
-  wiring and translations consistent, builds and lints, and offers to open the
-  result in the browser. Use when the user says "change the UI", "add a
-  button", "update the front end", "restyle", "add a page", "show X on the
-  screen", or "translate the UI". For a brand-new app use edu-build-app instead.
+  wiring and translations consistent, restyles apps to the suite style guide
+  (edu-design), builds and lints, and offers to open the result in the
+  browser. Use when the user says "change the UI", "add a button", "update the
+  front end", "restyle", "restyle to the suite style", "add a page", "show X
+  on the screen", or "translate the UI". For a brand-new app use edu-build-app
+  instead.
 metadata:
   argument-hint: >
     Which app and what change (e.g. "add a download button for the transcript
@@ -49,11 +51,33 @@ apply to both, ask the user and make it in both.
 
 ## Step 2 — Plan (show before editing)
 
-List the files you'll change and what changes in each. Follow the existing
-patterns: Redux slices and `api.ts` helpers in Smart Classroom, hooks and
-`api.ts` in the AI Teaching Assistant, Riverpod providers in Flutter. In the
-Smart Classroom UI, add every new user-visible string to both `en.json` and
-`zh.json`. Don't add dependencies unless the user agrees.
+List the files you'll change and what changes in each. New screens and visual
+changes follow [edu-design](../edu-design/SKILL.md) (the suite style guide).
+Follow the existing patterns: Redux slices and `api.ts` helpers in Smart
+Classroom, hooks and `api.ts` in the AI Teaching Assistant, Riverpod providers
+in Flutter. In the Smart Classroom UI, add every new user-visible string to
+both `en.json` and `zh.json`. Don't add dependencies unless the user agrees.
+
+### Restyle to the suite style
+
+Restyle one app per pull request; for Smart Classroom, Windows and Linux in
+separate pull requests.
+
+| UI | Styling today | How to adopt the edu-design tokens |
+|---|---|---|
+| Smart Classroom (Windows, Linux) | Plain CSS, one file per component in `src/assets/css/`, tokens in `src/index.css`; loads Inter, Roboto Mono, and IntelOne fonts from Google Fonts in `index.html` (the IntelOne request fails) | Copy `tokens.css` and `fonts/` to `src/styles/` and import it first in `src/main.tsx`. Point the existing `src/index.css` variables at the tokens, then replace hard-coded colors, sizes, and radii file by file. Remove the Google Fonts links. Replace every `outline: none` with the token focus ring |
+| AI Teaching Assistant | Tailwind 3 (`tailwind.config.js` `colors.intel`, `fontFamily.sans`); Inter from Google Fonts in `src/index.css` | Copy to `src/styles/`, `@import` it at the top of `src/index.css` instead of the Google Fonts import, and map the Tailwind theme (`colors`, `fontFamily`, `borderRadius`) to the custom properties |
+| Flutter RAG demo | `ThemeData` seeded from `0xFF0071C5` in `lib/main.dart` | Build the `ColorScheme` and text theme from the token values, bundle Clear Sans as a font asset in `pubspec.yaml` with its license, and use a text scale of 1.75 for board mode |
+
+1. Screenshot every screen before changing anything.
+2. Ask edu-design's Step 1 questions for the app as it is used today (Smart
+   Classroom runs on classroom panels, so it needs board mode).
+3. Shell first (app bar, buttons, focus ring), then each screen. Keep behavior,
+   API calls, and translation keys unchanged.
+4. Check the Chinese UI: Clear Sans has no Chinese glyphs, so it falls back to
+   the system font.
+5. Run edu-design's Step 4 review and show before and after screenshots side by
+   side.
 
 ## Step 3 — Implement and verify
 

@@ -36,6 +36,7 @@ A skill is a directory containing:
 | `edu-install` | Install the full suite or one app | All |
 | `edu-run` | Start, stop, health-check, open in the browser | All, plus `user-apps/` |
 | `edu-build-app` | Build a new app on the suite's services in `user-apps/<name>/` | Smart Classroom, AI Teaching Assistant |
+| `edu-design` | Suite style guide: devices, design tokens, components, voice, accessibility review | `user-apps/`, any web UI |
 | `edu-frontend` | Change an existing app's UI | Smart Classroom, AI Teaching Assistant, Flutter RAG demo |
 | `edu-configure` | Change features, models, and devices (CPU/GPU/NPU) | Smart Classroom, AI Teaching Assistant |
 | `edu-perf` | Measure latency, utilization, and power | Smart Classroom, AI Teaching Assistant |

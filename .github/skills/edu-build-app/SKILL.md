@@ -54,6 +54,7 @@ Step 5  ask to run -> run -> offer to open the browser
 | Who uses it and what they get out of it | Ask; this decides everything else |
 | Input: documents, a recording, the microphone, a video file or camera stream, text | Ask |
 | Output: answers with sources, transcript, summary, mind map, audio, live statistics | Ask |
+| Where it runs and how people use it (devices, input, shared screen) | Ask, with the questions in [edu-design](../edu-design/SKILL.md) Step 1 |
 | App name | Derive a short kebab-case name; confirm it |
 | Form | A single web page served by a small Python server |
 
@@ -102,8 +103,10 @@ Show all of the following, then stop and wait for approval:
    `GET :8000/health`, `GET :8010/v1/model-info`, `GET :8011/v1/model-info`, and
    `GET :8020/api/v1/model-info`; otherwise use the AGENTS.md defaults and say so.
    Point out any stage that isn't on OpenVINO and the option that would be.
-3. **Files** to create under `user-apps/<name>/`.
-4. **Prerequisites**: which suite apps and features must be running, and the port
+3. **Design brief** from [edu-design](../edu-design/SKILL.md) Step 2: users,
+   devices and display modes, input, shared screen, moment color, screens.
+4. **Files** to create under `user-apps/<name>/`.
+5. **Prerequisites**: which suite apps and features must be running, and the port
    the app will use (a free port outside the suite's, for example 8600; check with
    `Get-NetTCPConnection -State Listen -LocalPort <port>`).
 
@@ -115,16 +118,20 @@ Default layout (no Node.js or build step needed):
 
 ```
 user-apps/<name>/
-  README.md          purpose, pipeline diagram, Intel mapping table, prerequisites, run and stop commands
+  README.md          purpose, pipeline diagram, Intel mapping table, design brief, prerequisites, run and stop commands
   requirements.txt   pinned versions
   server.py          FastAPI: serves static/, exposes /healthz, calls the suite services
-  static/index.html  the UI (HTML, CSS, and JavaScript in one file)
+  static/index.html  the UI (HTML, app CSS, and JavaScript in one file)
+  static/tokens.css  copied unchanged from edu-design/assets/tokens.css
+  static/fonts/      copied unchanged from edu-design/assets/fonts/ (Clear Sans + LICENSE.txt)
   .env.example       service URLs and port; no secrets
 ```
 
 Rules:
 
 - Only create files under `user-apps/<name>/`. Never edit the suite's app folders or configs.
+- Build the UI with [edu-design](../edu-design/SKILL.md) Step 3: suite tokens and
+  components, display modes for the chosen devices, and its voice and tone.
 - The browser talks only to `server.py`; `server.py` calls the suite services. This
   avoids CORS (several services block other origins) — don't change service CORS settings.
 - Read each route's schema from `http://127.0.0.1:<port>/openapi.json` before calling it.
@@ -151,7 +158,8 @@ python -m venv .venv
 ```
 
 Then run the health check from [edu-run](../edu-run/SKILL.md) for the services the
-app depends on, and report any that are down.
+app depends on, and report any that are down. Review the UI with the
+[edu-design](../edu-design/SKILL.md) Step 4 checklist once it is running.
 
 ## Step 5 — Run
 
