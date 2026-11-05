@@ -104,7 +104,7 @@ Run from `ai-teaching-assistant`.
 |---|---|
 | Start | `.\start_ata.ps1 -NoBrowser` — **run it as a background process**: after the services are ready it keeps streaming their logs until stopped. It reuses services that are already healthy. On a first run, models download and warm up; `-StartupTimeoutSeconds` (default 600) raises the wait. |
 | Open | <http://127.0.0.1:7860> |
-| Stop | `.\stop_ata.ps1` (`-Force` to force-kill). **It also deletes the ingested knowledge base**, so tell the user before stopping. |
+| Stop | `.\stop_ata.ps1` (`-Force` to force-kill). The ingested knowledge base is kept; `-ClearKnowledgeBase` also deletes it, so confirm with the user before using that flag. |
 
 ## Flutter RAG demo
 

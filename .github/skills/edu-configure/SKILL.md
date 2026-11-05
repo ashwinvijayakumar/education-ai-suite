@@ -61,7 +61,10 @@ for feature details. The desktop app's **Configuration** screen edits the same f
 
 Same structure. `setup.sh` regenerates Compose profiles and model lists from it.
 The VLM is served by OVMS (`models.text_gen.ovms.*`), and the Content Search
-reranker requires a GPU.
+reranker requires a GPU. ASR runs in the `audio-analyzer` container, which reads
+`smart-classroom/Linux/edge-ai-libraries/microservices/audio-analyzer/config.yaml`
+(`openvino`, `whisper-base` by default); change it there and keep `models.asr`
+in `config.yaml` matching.
 
 ### AI Teaching Assistant — runtime files in the submodules
 
@@ -100,7 +103,7 @@ Apply only after the user agrees.
 |---|---|
 | Smart Classroom (Windows) | Stop and start with [edu-run](../edu-run/SKILL.md). The desktop app offers a restart when you save from its Configuration screen. |
 | Smart Classroom (Linux) | `./setup.sh` |
-| AI Teaching Assistant | Stop only the changed service by its port (see edu-run), then rerun `.\start_ata.ps1 -NoBrowser`; it reuses services that are still healthy. Avoid `stop_ata.ps1` unless needed, because it deletes the knowledge base. |
+| AI Teaching Assistant | Stop only the changed service by its port (see edu-run), then rerun `.\start_ata.ps1 -NoBrowser`; it reuses services that are still healthy. `.\stop_ata.ps1` followed by a full start also works and keeps the knowledge base. |
 
 3. A new model or precision may download and compile on first start; wait for health.
 
