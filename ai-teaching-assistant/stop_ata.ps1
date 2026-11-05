@@ -4,11 +4,12 @@
 #
 # Gracefully stops all running services
 #
-# Usage: powershell -ExecutionPolicy Bypass -File stop_ata.ps1
+# Usage: powershell -ExecutionPolicy Bypass -File stop_ata.ps1 [-Force] [-ClearKnowledgeBase]
 # =============================================================================
 
 param(
-    [switch]$Force = $false  # Force kill processes
+    [switch]$Force = $false,  # Force kill processes
+    [switch]$ClearKnowledgeBase = $false  # Also delete the ingested knowledge base
 )
 
 $ErrorActionPreference = "Continue"
@@ -129,30 +130,35 @@ foreach ($StoppedId in $UniqueStoppedIds) {
     catch {}
 }
 
-# Clear the ingested knowledge base so a fresh start begins with no uploaded
-# document. The React UI reconciles its persisted file list against the backend
-# context on load, so wiping the vector store here also clears the UI list.
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$VectorDb = Join-Path $ScriptDir "voice-enabled-interactions\smart-kiosk-assistant\rag-service\storage\vector_db"
-if (Test-Path $VectorDb) {
-    # The OS can hold the file lock briefly even after the process exits, so
-    # retry a few times before giving up.
-    $Cleared = $false
-    for ($Attempt = 1; $Attempt -le 5; $Attempt++) {
-        try {
-            Remove-Item -Path $VectorDb -Recurse -Force -ErrorAction Stop
-            Write-Success "Cleared ingested knowledge base"
-            $Cleared = $true
-            break
+# Opt-in: clear the ingested knowledge base so the next start begins with no
+# uploaded document. The React UI reconciles its persisted file list against the
+# backend context on load, so wiping the vector store here also clears the UI list.
+if ($ClearKnowledgeBase) {
+    $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    $VectorDb = Join-Path $ScriptDir "voice-enabled-interactions\smart-kiosk-assistant\rag-service\storage\vector_db"
+    if (Test-Path $VectorDb) {
+        # The OS can hold the file lock briefly even after the process exits, so
+        # retry a few times before giving up.
+        $Cleared = $false
+        for ($Attempt = 1; $Attempt -le 5; $Attempt++) {
+            try {
+                Remove-Item -Path $VectorDb -Recurse -Force -ErrorAction Stop
+                Write-Success "Cleared ingested knowledge base"
+                $Cleared = $true
+                break
+            }
+            catch {
+                Start-Sleep -Milliseconds 500
+            }
         }
-        catch {
-            Start-Sleep -Milliseconds 500
-        }
-    }
 
-    if (-not $Cleared) {
-        Write-Error-Custom "Could not clear knowledge base at $VectorDb : file is still locked"
+        if (-not $Cleared) {
+            Write-Error-Custom "Could not clear knowledge base at $VectorDb : file is still locked"
+        }
     }
+}
+else {
+    Write-Info "Knowledge base kept. To clear it, run: stop_ata.ps1 -ClearKnowledgeBase"
 }
 
 Write-Info "All services are now stopped."

@@ -104,6 +104,12 @@ You should see the AI Teaching Assistant interface.
 .\stop_ata.ps1
 ```
 
+Your ingested course materials are kept for the next start. To also clear the knowledge base, run:
+
+```powershell
+.\stop_ata.ps1 -ClearKnowledgeBase
+```
+
 To stop individual services, use `Ctrl+C` in their respective terminal windows.
 
 ## Uninstall
