@@ -131,6 +131,7 @@ Skills live in [.github/skills/](.github/skills/README.md); [skill-catalog.json]
 | Install the full suite or one app | [edu-install](.github/skills/edu-install/SKILL.md) |
 | Start, stop, health-check, or open an app in the browser | [edu-run](.github/skills/edu-run/SKILL.md) |
 | Build a new app on top of the suite's services | [edu-build-app](.github/skills/edu-build-app/SKILL.md) |
+| Design or review a UI in the suite style (devices, colors, type, components, accessibility) | [edu-design](.github/skills/edu-design/SKILL.md); quick review: [edu-design-review prompt](.github/prompts/edu-design-review.prompt.md) |
 | Change an existing app's front end | [edu-frontend](.github/skills/edu-frontend/SKILL.md) |
 | Change models, devices (CPU/GPU/NPU), or features of an existing app | [edu-configure](.github/skills/edu-configure/SKILL.md) |
 | Measure performance (latency, CPU/GPU/NPU utilization, power) | [edu-perf](.github/skills/edu-perf/SKILL.md) |
@@ -145,6 +146,7 @@ Skills live in [.github/skills/](.github/skills/README.md); [skill-catalog.json]
 
 - **Stay in scope.** Change only the app folder the task is about, and read its README first. Don't add features, dependencies, or API changes beyond the request.
 - **New apps go in `user-apps/<name>/`.** When asked to build an app on top of the suite, create it there and call the existing services over their HTTP APIs. Don't modify the app folders unless asked.
+- **UIs use the suite style.** New and restyled UIs use the [edu-design](.github/skills/edu-design/SKILL.md) tokens, components, and voice; ask where the app runs before designing. [ui-style.instructions.md](.github/instructions/ui-style.instructions.md) is the short version for `user-apps/` files.
 - **Plans show the pipeline.** When planning a new or changed pipeline, include an ASCII diagram of the data flow and a table of the models, Intel runtimes, and devices it uses.
 - **Submodules are read-only.** `ai-teaching-assistant/edge-ai-libraries`, `ai-teaching-assistant/voice-enabled-interactions`, `smart-classroom/Linux/edge-ai-libraries`, and `smart-classroom/Linux/performance-tools` track upstream repositories. Propose code changes upstream instead. The one exception is local edits to the AI Teaching Assistant's runtime `config.yaml` files, which are expected but never committed (see [edu-configure](.github/skills/edu-configure/SKILL.md)).
 - **Platform.** Windows apps run in PowerShell (not CMD) with native Python virtual environments. Smart Classroom on Linux and the OpenClaw demo use Docker.

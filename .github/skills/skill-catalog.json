@@ -59,9 +59,28 @@
       ]
     },
     {
+      "name": "edu-design",
+      "path": ".github/skills/edu-design/SKILL.md",
+      "description": "The suite style guide and design system for K-12 teacher and administrator apps (students and university planned). Asks where the app runs (laptop, desktop, interactive flat panel, projector, student device, kiosk) and how people interact, writes a design brief, applies the shared tokens and components, and reviews against an accessibility and classroom checklist.",
+      "apps": ["user-apps", "smart-classroom", "ai-teaching-assistant"],
+      "triggers": [
+        "style guide",
+        "design system",
+        "design tokens",
+        "look and feel",
+        "make it look good",
+        "smart board layout",
+        "touch-friendly",
+        "accessibility review"
+      ],
+      "requires": [
+        "a web UI (HTML and CSS)"
+      ]
+    },
+    {
       "name": "edu-frontend",
       "path": ".github/skills/edu-frontend/SKILL.md",
-      "description": "Change the UI of an existing app (Smart Classroom React/Electron UI, Smart Classroom Linux UI, AI Teaching Assistant React UI, Flutter RAG demo), keeping API wiring and translations consistent, then build, lint, and offer to open it.",
+      "description": "Change the UI of an existing app (Smart Classroom React/Electron UI, Smart Classroom Linux UI, AI Teaching Assistant React UI, Flutter RAG demo), keeping API wiring and translations consistent, restyling to the suite style (edu-design) when asked, then build, lint, and offer to open it.",
       "apps": ["smart-classroom", "ai-teaching-assistant", "flutter-rag-demo"],
       "triggers": [
         "change the ui",
@@ -69,6 +88,7 @@
         "add a button",
         "add a page",
         "restyle",
+        "restyle to the suite style",
         "translate the ui"
       ],
       "requires": [
