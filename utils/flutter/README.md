@@ -593,7 +593,7 @@ To create a new skill:
 - [Smart Classroom Backend Documentation](../../smart-classroom/Windows/README.md)
 - [Content Search API Documentation](../../smart-classroom/Windows/content_search/README.md)
 - [Skills Catalog](../../.github/skills/README.md)
-- [Copilot Instructions](../../.github/copilot-instructions.md)
+- [Agent Instructions](../../AGENTS.md)
 
 ---
 

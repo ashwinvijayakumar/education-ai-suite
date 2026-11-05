@@ -8,7 +8,7 @@ description: "On-demand security review for code, containers, and Kubernetes con
 ## Purpose
 
 This document defines on-demand security review guidance for code and configuration changes.
-It complements the always-on secure-by-default rules defined in `.github/copilot-instructions.md`.
+It complements the always-on secure-by-default rules defined in the repository-root `AGENTS.md`.
 
 This skill applies only at development and authoring time.
 Runtime, host, cluster, or organizational security controls are explicitly out of scope.
