@@ -241,11 +241,11 @@ by default.
 
 Its **Agentic/Coding Companion mode** (`/sc-setup`, `/sc-up`, `/sc-doctor`,
 `/sc-upload`, `/sc-qa`, `/sc-files`) is driven by skill `.md` files under
-`.github/skills`, plus the agent-instructions files every coding assistant
-starts from: `.github/copilot-instructions.md` (Copilot), `.cursor/rules/sc.mdc`
-(Cursor — itself just a router back to `.github/skills`), and the root-level
-`AGENTS.md`/`CLAUDE.md`. All of these are also outside `smart-classroom/Windows`,
-so bring `.github` and `.cursor` along too if you want that mode, not just
+`.github/skills`, plus the agent-instructions files coding assistants start
+from: the root-level `AGENTS.md` (canonical) and the files that point to it,
+`CLAUDE.md`, `.github/copilot-instructions.md` (Copilot), and
+`.cursor/rules/sc.mdc` (Cursor). `.github` and `.cursor` are outside
+`smart-classroom/Windows`, so bring them along too if you want that mode, not just
 `utils/flutter` on its own. `AGENTS.md`/`CLAUDE.md` need no extra step — cone-mode
 sparse checkout always keeps root-level files regardless of which directories
 you set.
