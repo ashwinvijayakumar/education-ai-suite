@@ -108,7 +108,7 @@ Defaults from the config files above.
 | App | Stage | Default model | Runtime | Device | Config |
 |---|---|---|---|---|---|
 | Smart Classroom | Summary, mind map, segmentation, report, Q&A, video summaries | Qwen3-VL-8B-Instruct (int4) | OpenVINO GenAI in the backend (Windows); OVMS (Linux) | GPU | `models.text_gen` |
-| Smart Classroom | ASR | whisper-small | `openai` (PyTorch); `openvino` provider available | CPU | `models.asr` |
+| Smart Classroom | ASR | whisper-small (Windows); whisper-base (Linux) | `openai` PyTorch (Windows); OpenVINO GenAI `openvino` (Linux) | CPU | `models.asr`; on Linux the `audio-analyzer` container reads `smart-classroom/Linux/edge-ai-libraries/microservices/audio-analyzer/config.yaml` |
 | Smart Classroom | Video analytics | YOLOv8m/s-pose + classifiers | DL Streamer + OpenVINO | NPU | `models.va` |
 | Smart Classroom | Board and document OCR | PP-OCRv6 | OpenVINO | CPU | `models.ocr` |
 | Smart Classroom | Content Search retrieval | CLIP (visual), multilingual-e5-small (text), bge-reranker-base | OpenVINO, OpenVINO GenAI | CPU (embeddings), GPU (reranker) | `content_search.file_ingest` |
@@ -118,7 +118,7 @@ Defaults from the config files above.
 | AI Teaching Assistant | Text-to-speech | Kokoro | ONNX Runtime; SpeechT5 runs on OpenVINO | CPU | `text-to-speech/config.yaml` `models.tts` |
 | OpenClaw demo | Chat agent LLM | Qwen3-8B | OVMS | GPU | `teacher-assistant-claw-demo/setup-ovms.sh` |
 
-Not every default stage runs on OpenVINO: Smart Classroom ASR defaults to `openai`
+Not every default stage runs on OpenVINO: Smart Classroom ASR on Windows defaults to `openai`
 (PyTorch), and Kokoro uses ONNX Runtime. When the user asks for an Intel-optimized
 pipeline, propose the OpenVINO option and the device it should run on.
 
