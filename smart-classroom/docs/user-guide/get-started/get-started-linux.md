@@ -48,8 +48,8 @@ Models are set in `config.yaml`. Changing `models.text_gen.vlm_name`, the embedd
 
 ```yaml
 asr:
-  provider: openai            # Supported: openvino, openai, funasr
-  name: whisper-small
+  provider: openvino          # Supported: openvino, openai, funasr
+  name: whisper-base
   device: CPU
 
 text_gen:
@@ -59,6 +59,9 @@ text_gen:
   weight_format: int4         # Supported: fp16, int4, int8
   max_new_tokens: 5120
 ```
+
+> [!NOTE]
+> Transcription runs in the `audio-analyzer` container, which reads its own `edge-ai-libraries/microservices/audio-analyzer/config.yaml` (also OpenVINO™ with `whisper-base` by default). To change the ASR provider, model, or device, edit that file and keep `models.asr` in `config.yaml` matching it. See [Linux Docker Architecture](../linux-docker-architecture.md).
 
 ### C. Hugging Face Token (Optional)
 

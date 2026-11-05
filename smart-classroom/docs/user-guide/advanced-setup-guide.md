@@ -84,12 +84,12 @@ features:
 
 ### B. Default Configuration
 
-By default, the project uses Whisper for transcription, and summarization runs on the shared OpenVINO™ vision-language model configured under `models.text_gen`. You can modify these settings in the configuration file (`smart-classroom/Windows/config.yaml`):
+By default, the project transcribes with OpenAI Whisper (the PyTorch `openai-whisper` package) using `whisper-small`, and summarization runs on the shared OpenVINO™ vision-language model configured under `models.text_gen`. You can modify these settings in the configuration file (`smart-classroom/Windows/config.yaml`):
 
 ```yaml
 asr:
-  provider: openvino            # Supported: openvino, openai, funasr
-  name: whisper-base         # Options: whisper-tiny, whisper-small, paraformer-zh etc.
+  provider: openai            # Supported: openvino, openai, funasr
+  name: whisper-small         # Options: whisper-tiny, whisper-base, paraformer-zh etc.
   device: CPU                 # Whisper currently supports only CPU
   temperature: 0.0
 

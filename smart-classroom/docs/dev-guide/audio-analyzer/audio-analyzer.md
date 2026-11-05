@@ -10,6 +10,6 @@ downloaded on first start, then cached.
 
 | Provider | Models | Downloaded from |
 |---|---|---|
-| OpenVINO™ (default) | Whisper (e.g. `whisper-base`) | Hugging Face (`openai/whisper-*`), exported to OpenVINO IR |
+| OpenVINO™ (Linux default) | Whisper (e.g. `whisper-base`) | Hugging Face (`openai/whisper-*`), exported to OpenVINO IR |
 | FunASR | Paraformer (`paraformer-zh`), for Mandarin | ModelScope (switch to Hugging Face with `model_hub`) |
-| OpenAI | Whisper (e.g. `whisper-base`) | OpenAI's public `openai-whisper` checkpoints |
+| OpenAI (Windows default) | Whisper (e.g. `whisper-small`) | OpenAI's public `openai-whisper` checkpoints |
