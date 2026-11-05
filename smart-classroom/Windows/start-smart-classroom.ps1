@@ -151,6 +151,60 @@ if (-not $NoElevate) {
 # ============================================================================
 $script:servicesStarted = $false
 
+# Smart Classroom's processes and all their descendants: listeners on its ports,
+# the backend launcher, executables under its folders (venv python, uvicorn,
+# mediamtx), and python/node running its scripts. Other apps are left alone.
+function Get-SmartClassroomProcessIds {
+    $prefixes = @(
+        ("$ScriptDir".TrimEnd('\') + '\'),
+        ((Split-Path "$ScriptDir" -Parent).TrimEnd('\') + '\smartclassroom\')
+    )
+    # 5173 is left out: other apps' dev servers use it too. Ours matches by path.
+    $ports = @(8000, 9011, 9902, 9012, 9090, 9900, 8001, 9990)
+
+    $procs = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue)
+    $byId = @{}
+    foreach ($p in $procs) { $byId[[int]$p.ProcessId] = $p }
+
+    $roots = @(Get-NetTCPConnection -State Listen -LocalPort $ports -ErrorAction SilentlyContinue |
+        Select-Object -ExpandProperty OwningProcess)
+    # The open Process handle keeps its PID from being reused.
+    if ($script:backendProcess -and -not $script:backendProcess.HasExited) {
+        $roots += $script:backendProcess.Id
+    }
+    foreach ($p in $procs) {
+        foreach ($prefix in $prefixes) {
+            $exeMatch = $p.ExecutablePath -and $p.ExecutablePath.StartsWith($prefix, [StringComparison]::OrdinalIgnoreCase)
+            $cmdMatch = ($p.Name -in 'python.exe', 'node.exe') -and $p.CommandLine -and
+                $p.CommandLine.IndexOf($prefix, [StringComparison]::OrdinalIgnoreCase) -ge 0
+            if ($exeMatch -or $cmdMatch) { $roots += $p.ProcessId; break }
+        }
+    }
+
+    $children = @{}
+    foreach ($p in $procs) {
+        $parent = $byId[[int]$p.ParentProcessId]
+        # A child is never older than its parent; an older one only inherited a reused PID.
+        if ($parent -and $parent.ProcessId -ne $p.ProcessId -and $p.CreationDate -ge $parent.CreationDate) {
+            $children[[int]$parent.ProcessId] += @([int]$p.ProcessId)
+        }
+    }
+
+    $ids = New-Object 'System.Collections.Generic.HashSet[int]'
+    $queue = New-Object 'System.Collections.Generic.Queue[int]'
+    foreach ($r in $roots) {
+        if ($byId.ContainsKey([int]$r) -and $ids.Add([int]$r)) { $queue.Enqueue([int]$r) }
+    }
+    while ($queue.Count -gt 0) {
+        $id = $queue.Dequeue()
+        if ($children.ContainsKey($id)) {
+            foreach ($c in $children[$id]) { if ($ids.Add($c)) { $queue.Enqueue($c) } }
+        }
+    }
+    [void]$ids.Remove($PID)
+    return @($ids)
+}
+
 function Stop-AllServices {
     Write-Host ""
     Write-Host "========================================" -ForegroundColor Yellow
@@ -158,8 +212,8 @@ function Stop-AllServices {
     Write-Host "========================================" -ForegroundColor Yellow
     Write-Host ""
     
-    $ports = @(8000, 9011, 9902, 9012, 5173)
-    $portNames = @{ 8000 = "Backend"; 9011 = "Content Search"; 9902 = "Layout Detection"; 9012 = "Grading"; 5173 = "Frontend" }
+    $ports = @(8000, 9011, 9902, 9012)
+    $portNames = @{ 8000 = "Backend"; 9011 = "Content Search"; 9902 = "Layout Detection"; 9012 = "Grading" }
     
     foreach ($port in $ports) {
         Write-Host "  Stopping $($portNames[$port]) (port $port)..." -ForegroundColor Yellow
@@ -225,34 +279,23 @@ function Stop-AllServices {
         }
     }
     
-    # Comprehensive process cleanup (silent)
-    
-    # Kill all Python processes (multiple attempts)
-    try {
-        Get-Process python, python.exe -ErrorAction SilentlyContinue | ForEach-Object {
-            Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue
+    # Scoped to Smart Classroom: the AI Teaching Assistant and other apps run
+    # python and node too.
+    Write-Host "  Stopping Frontend and remaining Smart Classroom processes..." -ForegroundColor Yellow
+    for ($attempt = 1; $attempt -le 3; $attempt++) {
+        $scProcIds = Get-SmartClassroomProcessIds
+        if ($scProcIds.Count -eq 0) { break }
+        foreach ($procId in $scProcIds) {
+            Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
         }
-    } catch {}
-    
-    # Kill all npm/node processes
-    try {
-        Get-Process node, npm -ErrorAction SilentlyContinue | ForEach-Object {
-            Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue
-        }
-    } catch {}
-    
-    # Kill uvicorn processes specifically
-    try {
-        Get-Process uvicorn -ErrorAction SilentlyContinue | ForEach-Object {
-            Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue
-        }
-    } catch {}
+        Start-Sleep -Seconds 1
+    }
     
     # Final wait for ports to be freed
     Start-Sleep -Seconds 3
     
     # Verify ports are free
-    $portsToVerify = @(8000, 9011, 9090, 9900, 8001, 9990, 5173)
+    $portsToVerify = @(8000, 9011, 9090, 9900, 8001, 9990)
     foreach ($port in $portsToVerify) {
         try {
             $connection = Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue
@@ -432,11 +475,37 @@ function Test-ServiceListening {
     }
 }
 
+# Other apps' dev servers default to 5173 too, and can hold it alongside ours on
+# the other loopback address (::1 vs 127.0.0.1). Ours runs vite from ui\.
+function Get-FrontendPortOwners {
+    $uiDir = "$ScriptDir".TrimEnd('\') + '\ui\'
+    Get-NetTCPConnection -State Listen -LocalPort 5173 -ErrorAction SilentlyContinue |
+        Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object {
+            $proc = Get-CimInstance Win32_Process -Filter "ProcessId=$_" -ErrorAction SilentlyContinue
+            [pscustomobject]@{
+                Id     = $_
+                Name   = $proc.Name
+                IsOurs = [bool]($proc.CommandLine -and $proc.CommandLine.IndexOf($uiDir, [StringComparison]::OrdinalIgnoreCase) -ge 0)
+            }
+        }
+}
+
+$frontendOwners = @(Get-FrontendPortOwners)
+$foreignFrontend = @($frontendOwners | Where-Object { -not $_.IsOurs })
+if ($foreignFrontend.Count -gt 0) {
+    Write-Host ""
+    foreach ($owner in $foreignFrontend) {
+        Write-Host "  ERROR: Port 5173 is in use by another app ($($owner.Name), PID $($owner.Id))." -ForegroundColor Red
+    }
+    Write-Host "  Stop it (for example the AI Teaching Assistant's 'npm run dev') and run this script again." -ForegroundColor Yellow
+    exit 1
+}
+
 $backendRunning = Test-ServiceListening -Port 8000
 $contentSearchRunning = Test-ServiceListening -Port 9011
 $layoutDetectionRunning = Test-ServiceListening -Port 9902
 $gradingRunning = Test-ServiceListening -Port 9012
-$frontendRunning = Test-ServiceListening -Port 5173
+$frontendRunning = $frontendOwners.Count -gt 0
 
 $anyRunning = $backendRunning -or $contentSearchRunning -or $layoutDetectionRunning -or $gradingRunning -or $frontendRunning
 
@@ -1301,7 +1370,7 @@ if ($noProxy) {
 $frontendProxyCommands = $proxyCommands
 # Loopback only: the dev server proxies to the unauthenticated content-search and
 # grading backends, so binding 0.0.0.0 would expose them to the whole network.
-$frontendStartCommand = "npm run dev -- --host 127.0.0.1 --port 5173"
+$frontendStartCommand = "npm run dev -- --host 127.0.0.1 --port 5173 --strictPort"
 $frontendHeader = "FRONTEND UI"
 $frontendStartMsg = "Starting Frontend (port 5173)..."
 $frontendTitle = "Frontend"
