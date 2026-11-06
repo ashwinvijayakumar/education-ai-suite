@@ -24,8 +24,8 @@
   min-width: 0;
   box-sizing: border-box;
   overflow-y: auto;
-  background: #f8f8f8;
-  border-left: 1px solid #ddd;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
   padding: 12px 8px;
 }
 
@@ -46,7 +46,7 @@
 .grading-tabs {
   display: flex;
   gap: 8px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--line);
 }
 
 .grading-tab {
@@ -55,7 +55,7 @@
   background: transparent;
   cursor: pointer;
   font-size: 14px;
-  color: #555;
+  color: var(--ink-2);
   border-bottom: 2px solid transparent;
 }
 
@@ -72,7 +72,7 @@
   align-items: center;
   gap: 5px;
   font-size: 12px;
-  color: #666;
+  color: var(--ink-2);
 }
 
 .grading-service-dot {
@@ -83,16 +83,16 @@
 }
 
 .grading-service-dot.ok {
-  background: #4caf50;
+  background: var(--success);
 }
 
 .grading-service-dot.fail {
-  background: #d9534f;
+  background: var(--danger);
 }
 
 .grading-tab.active {
-  color: #0071c5;
-  border-bottom-color: #0071c5;
+  color: var(--brand);
+  border-bottom-color: var(--brand);
   font-weight: 600;
 }
 
@@ -104,7 +104,7 @@
 
 .grading-placeholder {
   padding: 32px;
-  color: #666;
+  color: var(--ink-2);
 }
 
 .grading-main {
@@ -117,15 +117,15 @@
   margin: 0 0 12px;
   font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: var(--ink);
 }
 
 /* New-task form */
 .grading-newtask {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 16px 20px;
-  background: #fafafa;
+  background: var(--paper);
 }
 
 .grading-form-row {
@@ -139,7 +139,7 @@
 
 .grading-form-label {
   font-size: 13px;
-  color: #555;
+  color: var(--ink-2);
 }
 
 .grading-form-control {
@@ -160,10 +160,10 @@
 .grading-select,
 .grading-input {
   padding: 6px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   font-size: 13px;
-  background: #fff;
+  background: var(--surface);
   width: 100%;
   box-sizing: border-box;
 }
@@ -171,7 +171,7 @@
 .grading-form-hint {
   margin: 0 0 10px 108px;
   font-size: 12px;
-  color: #999;
+  color: var(--ink-2);
 }
 
 /* Buttons */
@@ -191,31 +191,31 @@
 }
 
 .grading-btn-primary {
-  background: #0071c5;
+  background: var(--brand);
   color: #fff;
 }
 
 .grading-btn-secondary {
-  background: #fff;
-  border-color: #ccc;
-  color: #333;
+  background: var(--surface);
+  border-color: var(--line-strong);
+  color: var(--ink);
 }
 
 .grading-btn-danger {
-  background: #fff;
-  border-color: #d9534f;
-  color: #d9534f;
+  background: var(--surface);
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
 .grading-btn-start {
-  background: #28a745;
-  border-color: #28a745;
+  background: var(--success);
+  border-color: var(--success);
   color: #fff;
 }
 
 .grading-btn-start:hover:not(:disabled) {
-  background: #218838;
-  border-color: #218838;
+  background: var(--success);
+  border-color: var(--success);
 }
 
 .grading-btn-start:disabled {
@@ -226,7 +226,7 @@
 }
 
 .grading-error {
-  color: #d9534f;
+  color: var(--danger);
   font-size: 13px;
   margin: 6px 0;
 }
@@ -234,7 +234,7 @@
 /* Task list */
 .grading-tasklist {
   padding-top: 16px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--line);
 }
 
 .grading-tasklist-header {
@@ -248,7 +248,7 @@
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: #555;
+  color: var(--ink-2);
   margin-bottom: 10px;
 }
 
@@ -258,7 +258,7 @@
   background: transparent;
   cursor: pointer;
   font-size: 18px;
-  color: #aaa;
+  color: var(--ink-2);
   line-height: 1;
   padding: 0 2px;
   transition: color 0.2s;
@@ -267,7 +267,7 @@
 }
 
 .grading-refresh-icon:hover:not(:disabled) {
-  color: #0071c5;
+  color: var(--brand);
 }
 
 .grading-refresh-icon:disabled {
@@ -288,29 +288,29 @@
 
 .grading-filter-chip {
   padding: 4px 12px;
-  border: 1px solid #d5d5d5;
+  border: 1px solid var(--line);
   border-radius: 4px;
-  background: #fff;
-  color: #555;
+  background: var(--surface);
+  color: var(--ink-2);
   font-size: 13px;
   cursor: pointer;
 }
 
 .grading-filter-chip:hover {
-  border-color: #0071c5;
-  color: #0071c5;
+  border-color: var(--brand);
+  color: var(--brand);
 }
 
 .grading-filter-chip.active {
-  background: #0071c5;
-  border-color: #0071c5;
+  background: var(--brand);
+  border-color: var(--brand);
   color: #fff;
 }
 
 .grading-empty {
   padding: 24px;
   text-align: center;
-  color: #999;
+  color: var(--ink-2);
   font-size: 13px;
 }
 
@@ -321,7 +321,7 @@
 }
 
 .grading-row-wrap {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -335,14 +335,14 @@
     opacity: 0;
     max-height: 0;
     transform: translateY(-8px);
-    background: #d4edda;
+    background: var(--success-tint);
   }
 
   25% {
     opacity: 1;
     max-height: 200px;
     transform: translateY(0);
-    background: #d4edda;
+    background: var(--success-tint);
   }
 
   100% {
@@ -357,11 +357,11 @@
   gap: 14px;
   padding: 10px 14px;
   cursor: pointer;
-  background: #fff;
+  background: var(--surface);
 }
 
 .grading-row:hover {
-  background: #f5f9fd;
+  background: var(--brand-tint);
 }
 
 .grading-dot {
@@ -373,15 +373,15 @@
 }
 
 .grading-dot.status-RUNNING {
-  background: #0071c5;
+  background: var(--brand);
 }
 
 .grading-dot.status-COMPLETED {
-  background: #4caf50;
+  background: var(--success);
 }
 
 .grading-dot.status-FAILED {
-  background: #d9534f;
+  background: var(--danger);
 }
 
 .grading-dot.status-CANCELLED {
@@ -394,7 +394,7 @@
 }
 
 .grading-dot.status-CANCELLING {
-  background: #d9534f;
+  background: var(--danger);
 }
 
 .grading-dot.status-PENDING {
@@ -410,7 +410,7 @@
 
 .grading-row-id {
   font-size: 12px;
-  color: #666;
+  color: var(--ink-2);
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -419,48 +419,48 @@
 }
 
 .grading-row-taskid {
-  color: #aaa;
+  color: var(--ink-2);
   font-size: 11px;
-  font-family: monospace;
+  font-family: var(--font-mono);
   flex-shrink: 0;
 }
 
 .grading-row-counts {
   font-size: 13px;
-  color: #555;
+  color: var(--ink-2);
   margin-left: auto;
 }
 
 .grading-row-time {
   font-size: 12px;
-  color: #999;
+  color: var(--ink-2);
   flex-shrink: 0;
 }
 
 .grading-row-elapsed {
   font-size: 12px;
-  color: #888;
+  color: var(--ink-2);
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
 }
 
 .grading-row-arrow {
-  color: #999;
+  color: var(--ink-2);
   flex: none;
 }
 
 /* Task detail */
 .grading-detail {
   padding: 14px 16px;
-  border-top: 1px solid #eee;
-  background: #fafafa;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .grading-detail-progress {
   display: flex;
   gap: 20px;
   font-size: 13px;
-  color: #333;
+  color: var(--ink);
   margin-bottom: 8px;
 }
 
@@ -469,7 +469,7 @@
   flex-wrap: wrap;
   gap: 8px 20px;
   font-size: 12px;
-  color: #777;
+  color: var(--ink-2);
   margin-bottom: 12px;
 }
 
@@ -489,7 +489,7 @@
   width: 140px;
   padding-top: 22px;
   padding-left: 12px;
-  border-left: 1px solid #e0e0e0;
+  border-left: 1px solid var(--line);
   align-self: stretch;
 }
 
@@ -501,7 +501,7 @@
   display: flex;
   gap: 0;
   align-items: flex-start;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--line);
   padding-top: 12px;
   margin-top: 4px;
 }
@@ -510,7 +510,7 @@
   flex: 1;
   min-width: 0;
   padding-right: 12px;
-  border-right: 2px solid #e0e0e0;
+  border-right: 2px solid var(--line);
 }
 
 .grading-timing {
@@ -518,7 +518,7 @@
   width: 200px;
   padding-right: 12px;
   margin-right: 12px;
-  border-right: 2px solid #e0e0e0;
+  border-right: 2px solid var(--line);
   align-self: stretch;
 }
 
@@ -532,23 +532,23 @@
 .grading-timing-table td {
   padding: 4px 8px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--line);
 }
 
 .grading-timing-table th:first-child,
 .grading-timing-table td:first-child {
   width: 24px;
-  color: #aaa;
+  color: var(--ink-2);
   text-align: center;
 }
 
 .grading-timing-table th {
-  color: #777;
+  color: var(--ink-2);
   font-weight: 600;
 }
 
 .grading-timing-total td {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--line-strong);
   padding-top: 6px;
 }
 
@@ -564,13 +564,13 @@
   background: transparent;
   cursor: pointer;
   font-size: 14px;
-  color: #aaa;
+  color: var(--ink-2);
   padding: 0 2px;
   line-height: 1;
 }
 
 .grading-log-expand:hover {
-  color: #0071c5;
+  color: var(--brand);
 }
 
 .grading-log-modal {
@@ -578,8 +578,8 @@
   height: 72vh;
   margin-top: 64px;
   max-height: calc(100vh - 140px);
-  background: #ffffff;
-  border: 1px solid #e2e6ea;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -588,29 +588,29 @@
 }
 
 .grading-log-modal .grading-picker-header {
-  background: #f7f9fb;
-  border-bottom: 1px solid #e2e6ea;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
 .grading-log-modal .grading-picker-title {
-  color: #1f2933;
+  color: var(--ink);
 }
 
 .grading-log-modal .grading-picker-close {
-  color: #8a94a0;
+  color: var(--ink-2);
 }
 
 .grading-log-modal .grading-picker-close:hover {
-  color: #1f2933;
+  color: var(--ink);
 }
 
 .grading-log-modal-box {
   flex: 1;
   margin: 0;
   padding: 16px 18px;
-  color: #2b3440;
-  background: #ffffff;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--ink);
+  background: var(--surface);
+  font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.6;
   overflow: auto;
@@ -660,7 +660,7 @@
 
 .grading-log-title {
   font-size: 12px;
-  color: #777;
+  color: var(--ink-2);
   margin-bottom: 4px;
 }
 
@@ -669,7 +669,7 @@
   padding: 10px 12px;
   background: #1e1e1e;
   color: #d4d4d4;
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   border-radius: 4px;
   height: 200px;
@@ -693,7 +693,7 @@
   width: 560px;
   max-width: 90vw;
   max-height: 80vh;
-  background: #fff;
+  background: var(--surface);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -705,7 +705,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--line);
 }
 
 .grading-picker-title {
@@ -719,7 +719,7 @@
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
-  color: #999;
+  color: var(--ink-2);
 }
 
 .grading-picker-path {
@@ -727,7 +727,7 @@
   align-items: center;
   gap: 10px;
   padding: 10px 18px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--line);
 }
 
 .grading-picker-up {
@@ -735,9 +735,9 @@
 }
 
 .grading-picker-current {
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
-  color: #555;
+  color: var(--ink-2);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -754,7 +754,7 @@
 .grading-picker-empty {
   padding: 24px;
   text-align: center;
-  color: #999;
+  color: var(--ink-2);
   font-size: 13px;
 }
 
@@ -768,11 +768,11 @@
 }
 
 .grading-picker-entry:hover {
-  background: #f5f9fd;
+  background: var(--brand-tint);
 }
 
 .grading-picker-entry.is-file {
-  color: #aaa;
+  color: var(--ink-2);
   cursor: default;
 }
 
@@ -797,7 +797,7 @@
   justify-content: flex-end;
   gap: 10px;
   padding: 12px 18px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--line);
 }
 
 .grading-config-form {
@@ -808,17 +808,17 @@
 }
 
 .grading-config-group {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 10px 12px;
-  background: #fafafa;
+  background: var(--paper);
 }
 
 .grading-config-group-title {
   margin: 0 0 8px 0;
   font-size: 12px;
   font-weight: 600;
-  color: #888;
+  color: var(--ink-2);
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
@@ -843,7 +843,7 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #555;
+  color: var(--ink-2);
   cursor: pointer;
 }
 
@@ -853,12 +853,12 @@
 
 .grading-config-label {
   font-size: 12px;
-  color: #555;
+  color: var(--ink-2);
 }
 
 .grading-config-input {
   padding: 4px 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   font-size: 13px;
   width: 100%;
@@ -867,7 +867,7 @@
 
 .grading-config-msg {
   font-size: 12px;
-  color: #4caf50;
+  color: var(--success);
   margin: 0;
 }
 
@@ -884,7 +884,7 @@
 .grading-config-row-remove {
   border: none;
   background: transparent;
-  color: #999;
+  color: var(--ink-2);
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
@@ -892,7 +892,7 @@
 }
 
 .grading-config-row-remove:hover:not(:disabled) {
-  color: #d9534f;
+  color: var(--danger);
 }
 
 .grading-config-row-remove:disabled {
@@ -916,7 +916,7 @@
   width: 720px;
   max-width: 92vw;
   height: 80vh;
-  background: #fff;
+  background: var(--surface);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -935,26 +935,25 @@
   flex: 1;
   width: 100%;
   resize: none;
-  border: 1px solid #ccc;
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   padding: 10px 12px;
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   line-height: 1.6;
-  color: #333;
-  background: #fafafa;
-  outline: none;
+  color: var(--ink);
+  background: var(--paper);
 }
 
 .grading-editor-textarea:focus {
-  border-color: #0071c5;
-  background: #fff;
+  border-color: var(--brand);
+  background: var(--surface);
 }
 
 .grading-editor-saved {
   margin-right: auto;
   font-size: 13px;
-  color: #4caf50;
+  color: var(--success);
 }
 
 /* Results view */
@@ -974,12 +973,12 @@
 .grading-results-title {
   font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: var(--ink);
   flex: 1;
 }
 
 .grading-results-subject {
-  color: #777;
+  color: var(--ink-2);
   font-weight: 400;
 }
 
@@ -988,22 +987,22 @@
   background: transparent;
   cursor: pointer;
   font-size: 20px;
-  color: #555;
+  color: var(--ink-2);
   padding: 0 4px;
   line-height: 1;
   flex-shrink: 0;
 }
 
 .grading-results-back:hover {
-  color: #0071c5;
+  color: var(--brand);
 }
 
 .grading-results-meta-panel {
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 4px 16px;
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
+  background: var(--paper);
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 12px 16px;
   font-size: 12px;
@@ -1015,20 +1014,20 @@
 }
 
 .grading-results-meta-label {
-  color: #999;
+  color: var(--ink-2);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
 
 .grading-results-meta-value {
-  color: #333;
+  color: var(--ink);
   font-size: 12px;
 }
 
 .grading-results-meta-path {
   word-break: break-all;
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
 }
 
@@ -1043,7 +1042,7 @@
   flex: 1;
   font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: var(--ink);
 }
 
 .grading-export-btn {
@@ -1057,7 +1056,7 @@
   flex: 1;
   min-height: 0;
   overflow: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
   border-radius: 6px;
 }
 
@@ -1072,36 +1071,36 @@
 .grading-results-table th,
 .grading-results-table td {
   padding: 7px 12px;
-  border-bottom: 1px solid #eee;
-  border-right: 1px solid #f2f2f2;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
   text-align: center;
 }
 
 .grading-results-table thead th {
   position: sticky;
   top: 0;
-  background: #f5f7fa;
-  color: #444;
+  background: var(--paper);
+  color: var(--ink);
   font-weight: 600;
   z-index: 2;
 }
 
 .grading-results-table tbody tr:hover td {
-  background: #f5f9fd;
+  background: var(--brand-tint);
 }
 
 /* Sticky first three columns (index + student id + name) so they stay while scrolling right. */
 .grading-results-table .sticky-col {
   position: sticky;
   left: 0;
-  background: #fff;
+  background: var(--surface);
   z-index: 1;
   text-align: left;
 }
 
 .grading-results-q {
   font-variant-numeric: tabular-nums;
-  color: #555;
+  color: var(--ink-2);
 }
 
 .grading-results-detail-col {
@@ -1113,7 +1112,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #888;
+  color: var(--ink-2);
   padding: 2px;
   display: inline-flex;
   align-items: center;
@@ -1121,7 +1120,7 @@
 }
 
 .grading-results-detail-btn:hover {
-  color: #0071c5;
+  color: var(--brand);
 }
 
 .grading-results-table .sticky-col-2 {
@@ -1136,11 +1135,11 @@
 
 .grading-results-table thead .sticky-col {
   z-index: 3;
-  background: #f5f7fa;
+  background: var(--paper);
 }
 
 .grading-results-max {
-  color: #aaa;
+  color: var(--ink-2);
   font-size: 11px;
   margin-left: 1px;
 }
@@ -1155,5 +1154,5 @@
 }
 
 .grading-results-sortable:hover {
-  background: #eaeef3;
+  background: var(--line);
 }

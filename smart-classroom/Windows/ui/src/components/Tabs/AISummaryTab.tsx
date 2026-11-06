@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { useTranslation } from "react-i18next";
 import "../../assets/css/AISummaryTab.css";
 import { useAppSelector } from "../../redux/hooks";
+import Icon from "../common/Icon";
 
 // Renders the summary the pipeline streams into the store (see
 // redux/useAudioPipeline). The stream is not owned here — this tab is unmounted
@@ -56,8 +57,14 @@ const AISummaryTab: React.FC = () => {
         </div>
       )}
       {typed && (
-        <div className="summary-content">
-          <ReactMarkdown>{typed}</ReactMarkdown>
+        <div className="ai-output">
+          <div className="ai-label">
+            <Icon name="sparkle" />
+            {t("summary.aiDraft", "AI draft")}
+          </div>
+          <div className="summary-content">
+            <ReactMarkdown>{typed}</ReactMarkdown>
+          </div>
         </div>
       )}
     </div>

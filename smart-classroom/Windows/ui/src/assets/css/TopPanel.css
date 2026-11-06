@@ -1,98 +1,90 @@
+/* App bar: white surface with the moment ribbon on top (suite style) */
 .top-panel {
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: var(--color-theme);
   width: 100%;
-  height: 64px;
+  height: var(--top-panel-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  gap: var(--space-4);
+  padding: 0 var(--space-5);
   box-sizing: border-box;
-  color: var(--color-light);
-  border-bottom: 1px solid #e6e7e8;
+  color: var(--ink);
+  background: var(--surface);
+  border-top: 0.375rem solid var(--moment);
+  border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
 }
 
 .brand-slot {
   display: flex;
   align-items: center;
-  font-size: 1rem;
-  color: white;
+  gap: var(--space-3);
+  min-width: 0;
 }
 
+/* The Intel logo is white, so it sits on a brand-blue badge */
 .logo {
-  width: 5.5rem;
-  height: 4rem;
-  margin-right: 1rem;
+  display: block;
+  height: 2.5rem;
+  width: auto;
+  padding: 0.3rem 0.45rem;
+  background: var(--brand);
+  border-radius: var(--radius-sm);
+  flex: none;
 }
 
 .app-title {
-  font-size: 1rem;
-  color: white;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .action-slot {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
+  flex: none;
 }
 
-.content-search-btn {
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  color: white;
-  padding: 0.35rem 1rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-family: var(--font-display);
+.display-toggle button {
+  min-height: 2.25rem;
+  font-size: var(--text-sm);
+}
+
+.top-panel select.language-switcher {
+  width: auto;
+  min-height: 2.5rem;
+  padding: 0 var(--space-6) 0 var(--space-3);
+  font-weight: var(--weight-medium);
+  border-radius: var(--radius-pill);
+  appearance: none;
+  background: var(--surface) var(--control-chevron) no-repeat right 0.9rem center / 0.65rem;
   cursor: pointer;
-  margin-right: 1rem;
-  transition: background 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-
-.content-search-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: white;
-}
-
-.content-search-back-btn {
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  color: white;
-  padding: 0.35rem 1rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-family: var(--font-display);
-  cursor: pointer;
-  margin-right: 1rem;
-  transition: background 0.2s, border-color 0.2s;
-  white-space: nowrap;
-}
-
-.content-search-back-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: white;
 }
 
 .content-search-subheader {
   position: sticky;
-  top: 64px;
+  top: var(--top-panel-height);
   left: 0;
   right: 0;
   z-index: 98;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
-  height: 48px;
-  background-color: #fff;
-  border-bottom: 1px solid #e6e7e8;
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: #333;
+  padding: 0 var(--space-5);
+  min-height: 3rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
 }
 
 /* ---------------------------------------------------------------------------
@@ -104,77 +96,65 @@
 body.electron .top-panel {
   -webkit-app-region: drag;
   /* Reserve room on the right for the native window controls overlay
-     (Windows/Linux). Falls back to the normal 2rem padding elsewhere. */
-  padding-right: calc(2rem + (100vw - env(titlebar-area-width, 100vw)));
+     (Windows/Linux). Falls back to the normal padding elsewhere. */
+  padding-right: calc(var(--space-5) + (100vw - env(titlebar-area-width, 100vw)));
 }
 
 body.electron .top-panel .action-slot,
-body.electron .top-panel .content-search-btn,
-body.electron .top-panel .content-search-back-btn,
 body.electron .top-panel button,
 body.electron .top-panel input,
 body.electron .top-panel select {
   -webkit-app-region: no-drag;
 }
 
-/* Navigation Menu beside Intel Logo */
+/* Navigation menu beside the Intel logo */
 .nav-menu-container {
   position: relative;
-  margin-right: 0.75rem;
 }
 
 .nav-menu-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
+  display: grid;
+  place-items: center;
+  width: var(--target);
+  height: var(--target);
   padding: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 0.125rem solid var(--line);
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.nav-menu-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
+.nav-menu-toggle:hover,
+.nav-menu-toggle[aria-expanded="true"] {
+  color: var(--moment);
+  border-color: var(--moment);
+  background: var(--moment-tint);
 }
 
-.hamburger-icon {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  width: 18px;
-}
-
-.hamburger-icon span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+.nav-menu-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .nav-menu-dropdown {
   position: absolute;
   left: 0;
-  top: calc(100% + 8px);
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  min-width: 220px;
-  overflow: hidden;
-  animation: navSlideDown 0.2s ease;
+  top: calc(100% + var(--space-3));
+  min-width: 16rem;
+  padding: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  animation: navSlideDown var(--dur) var(--ease);
   z-index: 10000;
 }
 
 @keyframes navSlideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-0.5rem);
   }
   to {
     opacity: 1;
@@ -183,80 +163,91 @@ body.electron .top-panel select {
 }
 
 .nav-menu-header {
-  padding: 1rem 1.25rem;
-  background: var(--color-theme, #0071c5);
-  color: white;
-  font-weight: 600;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
 }
 
 .nav-menu-list {
   list-style: none;
-  padding: 0.5rem 0;
+  padding: 0;
   margin: 0;
 }
 
-.nav-menu-list li {
+.nav-menu-list li button {
   display: flex;
   align-items: center;
-  padding: 0.875rem 1.25rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  font-size: 0.95rem;
-  color: #333;
-  gap: 0.75rem;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--target);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  text-align: start;
+  color: var(--ink);
+  background: transparent;
+  border-radius: var(--radius);
 }
 
-.nav-menu-list li:hover {
-  background: #f5f5f5;
+.nav-menu-list li button:hover:not(:disabled) {
+  background: var(--paper);
 }
 
-.nav-menu-list li.active {
-  background: #e8f4fd;
-  color: var(--color-theme, #0071c5);
-  font-weight: 600;
-  border-left: 3px solid var(--color-theme, #0071c5);
+.nav-menu-list li button:disabled {
+  background: transparent;
 }
 
-/* Keep all menu icons in their natural color always */
 .nav-menu-list .menu-icon {
-  font-size: 1.25rem;
-  width: 24px;
-  text-align: center;
-  opacity: 1 !important;
-  filter: none !important;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  color: var(--ink-2);
 }
 
-/* Disabled state - only gray out text, not icon */
-.nav-menu-list li span.disabled {
-  opacity: 0.4;
-  color: #999;
+.nav-menu-list li.active button {
+  color: var(--moment);
+  background: var(--moment-tint);
+  font-weight: var(--weight-bold);
 }
 
-/* Prevent clicking on disabled items */
-.nav-menu-list li.no-click {
-  cursor: not-allowed;
-  pointer-events: none;
+.nav-menu-list li.active .menu-icon {
+  color: var(--moment);
 }
 
 /* Electron only: tooling entries (service manager, native application menu),
    separated from the navigation items above since they do not open an app screen. */
 .nav-menu-list li.nav-menu-tools,
 .nav-menu-list li.nav-menu-app-menu {
-  margin-top: 0.5rem;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 0.875rem;
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
 }
 
 /* One divider for the whole group. */
 .nav-menu-list li.nav-menu-tools + li.nav-menu-app-menu {
   margin-top: 0;
   border-top: none;
-  padding-top: 8px;
+  padding-top: 0;
 }
 
 body.electron .nav-menu-toggle {
   -webkit-app-region: no-drag;
+}
+
+@media (max-width: 760px) {
+  .logo,
+  .display-toggle {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .nav-menu-list li.active button {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
 }

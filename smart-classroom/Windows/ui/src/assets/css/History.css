@@ -26,14 +26,14 @@
   height: 100vh;
   width: 560px;
   max-width: 92vw;
-  background: #fff;
+  background: var(--surface);
   box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
   z-index: 1600;
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: var(--font-text);
+  font-family: var(--font-body);
 }
 
 .history-panel.open {
@@ -46,7 +46,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 16px 24px;
-  border-bottom: 1px solid #dfe3e8;
+  border-bottom: 1px solid var(--line);
   flex-shrink: 0;
   min-width: 0;
 }
@@ -70,7 +70,7 @@
 
 .history-panel-subtitle {
   font-size: 12px;
-  color: #8c95a6;
+  color: var(--ink-2);
   margin-top: 2px;
 }
 
@@ -87,7 +87,7 @@
   border: none;
   background: none;
   font-size: 20px;
-  color: #5a6374;
+  color: var(--ink-2);
   cursor: pointer;
   border-radius: 6px;
   display: flex;
@@ -96,7 +96,7 @@
 }
 
 .history-panel-close:hover {
-  background: #edf0f5;
+  background: var(--paper);
   color: var(--color-gray-900);
 }
 
@@ -129,16 +129,16 @@
 }
 
 .history-btn.danger:hover:not(:disabled) {
-  border-color: #c0392b;
-  color: #c0392b;
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
 .history-error {
   margin: 8px 24px;
   padding: 8px 12px;
   border-radius: var(--control-radius);
-  background: #fdecea;
-  color: #a93226;
+  background: var(--danger-tint);
+  color: var(--danger);
   font-size: 13px;
 }
 
@@ -156,17 +156,17 @@
   flex-direction: column;
   gap: 4px;
   padding: 9px 24px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--line);
   font-size: 13px;
   cursor: pointer;
 }
 
 .history-row:hover {
-  background: #fafafa;
+  background: var(--paper);
 }
 
 .history-row.expanded {
-  background: #f4f8fc;
+  background: var(--brand-tint);
 }
 
 .history-row-top {
@@ -243,8 +243,8 @@
 }
 
 .history-pip.stage-running { background: var(--color-theme); }
-.history-pip.stage-done { background: #27ae60; }
-.history-pip.stage-failed { background: #c0392b; }
+.history-pip.stage-done { background: var(--success); }
+.history-pip.stage-failed { background: var(--danger); }
 .history-pip.stage-interrupted { background: #e67e22; }
 
 .history-state {
@@ -254,16 +254,16 @@
   white-space: nowrap;
 }
 
-.history-state.state-pending { background: #eee; color: var(--color-gray-700); }
-.history-state.state-running { background: #e3f0fa; color: var(--color-theme); }
-.history-state.state-completed { background: #e8f6ed; color: #1e8449; }
-.history-state.state-failed { background: #fdecea; color: #a93226; }
-.history-state.state-cancelled { background: #f4ecfa; color: #6c3483; }
+.history-state.state-pending { background: var(--paper); color: var(--color-gray-700); }
+.history-state.state-running { background: var(--brand-tint); color: var(--color-theme); }
+.history-state.state-completed { background: var(--success-tint); color: var(--success); }
+.history-state.state-failed { background: var(--danger-tint); color: var(--danger); }
+.history-state.state-cancelled { background: #f4ecfa; color: var(--after-strong); }
 
 .history-detail {
   padding: 10px 24px 14px 42px;
-  border-bottom: 1px solid #f0f0f0;
-  background: #fbfcfd;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .history-detail-meta {
@@ -282,7 +282,7 @@
 
 .history-detail-error {
   font-size: 12px;
-  color: #a93226;
+  color: var(--danger);
 }
 
 .history-detail-note {
@@ -300,7 +300,7 @@
 .history-events td {
   text-align: left;
   padding: 4px 10px 4px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--line);
 }
 
 .history-events th {
@@ -331,9 +331,9 @@
   text-decoration-thickness: 2px;
 }
 
-.stage-text-done { color: #1e8449; }
-.stage-text-failed { color: #a93226; }
-.stage-text-interrupted { color: #b9770e; }
+.stage-text-done { color: var(--success); }
+.stage-text-failed { color: var(--danger); }
+.stage-text-interrupted { color: var(--warning); }
 
 .history-pager {
   display: flex;
@@ -341,7 +341,7 @@
   justify-content: center;
   gap: 12px;
   padding: 10px 24px;
-  border-top: 1px solid #dfe3e8;
+  border-top: 1px solid var(--line);
   flex-shrink: 0;
 }
 

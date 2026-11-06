@@ -1,33 +1,34 @@
+/* Fonts, colors, spacing and base components come from styles/tokens.css (the
+   suite style, imported first in main.tsx). The names below are the app's own,
+   kept so existing stylesheets pick up the suite values. */
 :root {
-  --font-display: "IntelOne Display", "Inter", system-ui, sans-serif;
-  --font-text: "IntelOne Text", "Inter", system-ui, sans-serif;
-  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-text: var(--font-body);
 
-  --color-dark: #2B2C30;
-  --color-light: #FFF;
-  --color-gray-700: #6A6D75;
-  --color-gray-900: #2B2C30;
-  --color-theme: #0071c5;
+  --color-dark: var(--ink);
+  --color-light: var(--on-brand);
+  --color-gray-700: var(--ink-2);
+  --color-gray-900: var(--ink);
+  --color-theme: var(--brand);
 
-  font-family: var(--font-text);
-  color: var(--color-dark);
-  background-color: #f5f7fa;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
 
   /* Layout heights (kept in sync with header/footer calc() math) */
-  --top-panel-height: 64px;
-  --header-bar-height: 56px;
-  --footer-height: 48px;
+  --top-panel-height: 4.25rem;
+  --header-bar-height: 4rem;
+  --footer-height: 2.5rem;
 
   /* Form controls — the shared look for text inputs and selects inside a form.
      Consumed by the upload and start-recording modals (UploadFilesModal.css). */
   --control-padding: 8px 12px;
-  --control-radius: 4px;
+  --control-radius: var(--radius-sm);
   --control-font-size: 14px;
-  --control-border-color: #ccc;
-  --control-background: #f7f7f7;
-  --control-focus-color: #007bff;
-  --control-focus-ring: 0 0 0 2px rgba(0, 123, 255, 0.25);
-  --control-placeholder-color: #999;
+  --control-border-color: var(--line-strong);
+  --control-background: var(--surface);
+  --control-focus-color: var(--brand);
+  --control-focus-ring: 0 0 0 3px var(--brand-tint);
+  --control-placeholder-color: var(--ink-2);
   /* Drop-down arrow for a control that opens a list. Drawn rather than left to
      the platform, so a <select> and a text field with a suggestion list can
      carry the same one — the native select arrow cannot be reused on an
@@ -52,8 +53,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  color: var(--color-dark);
-  background: #f5f7fa;
+  color: var(--ink);
+  background: var(--paper);
 }
 
 /* The two slide-over panels (report, session history) start below the Electron
@@ -69,28 +70,28 @@ body.electron .history-panel {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  color: var(--color-dark);
-  font-weight: 400;
-  line-height: 1.2;
+  color: var(--ink);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
 }
 
 /* ── App-wide element defaults ──  */
 
 h2 {
-  font-size: clamp(18px, 5vw, 24px);
-  margin-bottom: 10px;
-  text-align: left;
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  margin-bottom: var(--space-3);
+  text-align: start;
   border-bottom: none;
   padding-bottom: 0;
 }
 
 label {
-  color: var(--color-gray-700);
-  font-family: var(--font-text);
-  font-size: clamp(11px, 2.5vw, 12px);
-  font-weight: 400;
-  line-height: clamp(12px, 3vw, 14px);
-  text-align: left;
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  text-align: start;
 }
 
 /* Text inputs and selects. Specificity is deliberately 0-0-1: the element
@@ -102,79 +103,69 @@ label {
 input:where([type="text"]),
 select {
   width: 100%;
-  padding: clamp(8px, 2vw, 10px);
-  border: 1px solid #ccc;
-  border-radius: 0px;
-  font-family: var(--font-text);
-  font-size: clamp(12px, 3vw, 14px);
-  font-weight: 400;
-  color: var(--color-dark);
-  line-height: clamp(14px, 3.5vw, 16px);
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
+  line-height: 1.25;
   box-sizing: border-box;
-  background: #f7f7f7;
+  background: var(--surface);
+}
+
+::placeholder {
+  color: var(--ink-2);
+  opacity: 0.85;
 }
 
 button, .text-button {
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-dark);
-  background: #FFF;
-  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
   border: none;
   padding: 6px 16px;
-  line-height: 16px;
+  line-height: 1.2;
   cursor: pointer;
-  transition: background 0.2s;
+  touch-action: manipulation;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
 
 button:disabled, .text-button:disabled {
-  color: var(--color-gray-700);
-  background: #f9f6f6;
-  opacity: 0.5;
+  color: var(--ink-2);
+  background: var(--paper);
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-.tabs button {
-  font-family: var(--font-text);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 18px;
-  color: var(--color-gray-700);
-  background: none;
-  border: none;
-  padding: 10px 0;
-  transition: color 0.2s, background 0.2s;
-}
-
-.tabs button.active {
-  color: var(--color-dark);
-  background: #e6e7e8;
-  border-bottom: 2px solid var(--color-theme);
-}
-
 .tab-content {
-  font-family: var(--font-text);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--color-dark);
-  line-height: 20px;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
+  line-height: var(--leading);
   background: none;
   padding: 0;
 }
 
 .notification {
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--color-dark);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
   background: none;
-  line-height: 16px;
+  line-height: 1.35;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--color-dark);
-    background-color: #f5f7fa;
-  }
+/* Board mode: the class reads the lesson; teacher-only panels stay on the laptop. */
+html[data-display="board"] .right-panel-slot,
+html[data-display="board"] .arrow,
+html[data-display="board"] .footer-bar {
+  display: none;
 }

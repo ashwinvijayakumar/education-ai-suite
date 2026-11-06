@@ -14,7 +14,7 @@
 }
 
 .rcm-modal {
-  background: #fff;
+  background: var(--surface);
   border-radius: 8px;
   padding: 20px 24px;
   max-width: 400px;
@@ -24,12 +24,12 @@
 .rcm-modal p {
   margin: 0 0 8px 0;
   font-size: 14px;
-  color: #1d2939;
+  color: var(--ink);
 }
 
 .rcm-modal-warning {
   font-size: 12px !important;
-  color: #667085 !important;
+  color: var(--ink-2) !important;
   margin-bottom: 16px !important;
 }
 
@@ -49,13 +49,13 @@
 }
 
 .rcm-modal-actions button:first-child {
-  background: #fff;
-  border: 1px solid #d0d5dd;
-  color: #344054;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
 }
 
 .rcm-modal-actions button:first-child:hover {
-  background: #f9fafb;
+  background: var(--paper);
 }
 
 .rcm-modal-actions button:disabled {
@@ -64,12 +64,12 @@
 }
 
 .rcm-danger-btn {
-  background: #d92d20 !important;
-  border: 1px solid #d92d20 !important;
+  background: var(--danger) !important;
+  border: 1px solid var(--danger) !important;
   color: #fff !important;
 }
 
 .rcm-danger-btn:hover:not(:disabled) {
-  background: #b42318 !important;
-  border-color: #b42318 !important;
+  background: var(--danger) !important;
+  border-color: var(--danger) !important;
 }

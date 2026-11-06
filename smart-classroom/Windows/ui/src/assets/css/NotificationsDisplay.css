@@ -2,57 +2,68 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 24px;
-  padding: 0 16px;
+  min-height: 1.5rem;
   min-width: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
 }
 
 .dual-notifications {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-2);
   flex-wrap: nowrap;
   min-width: 0;
   justify-content: center;
 }
 
+/* Status pills: a label and a word, never color alone */
 .notification-container {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  border: 1px solid var(--line);
   flex: 0 1 auto;
   min-width: 0;
   justify-content: flex-start;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.notification-container::before {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--moment);
 }
 
 .notification-container.error {
-  background-color: rgba(244, 67, 54, 0.1);
-  border: 1px solid rgba(244, 67, 54, 0.3);
-  border-left: 3px solid #f44336;
+  background: var(--danger-tint);
+  border-color: var(--danger);
   justify-content: center;
 }
 
+.notification-container.error::before {
+  background: var(--danger);
+}
+
 .notification-label {
-  font-family: "IntelOne Display", var(--font-display), system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(22, 21, 21, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  min-width: 40px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--ink-2);
   flex: none;
 }
 
 .notification-text {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 400;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--ink);
   flex: 1;
-  text-align: left;
+  text-align: start;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,8 +71,7 @@
 }
 
 .error-text {
-  color: #ff6b6b;
-  font-weight: 500;
+  color: var(--danger);
   text-align: center;
   /* Multi-line detail collapses to a single clipped line (full text in the
      tooltip) so a long message cannot stretch the navbar. */
@@ -71,71 +81,16 @@
   max-width: 60ch;
 }
 
+/* The pills already separate the two statuses */
 .notification-separator {
-  color: rgba(27, 27, 27, 0.3);
-  font-weight: 300;
-  font-size: 14px;
+  display: none;
 }
 
 @media (max-width: 768px) {
   .dual-notifications {
-    flex-direction: column;
-    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
-
-  .notification-separator {
-    display: none;
-  }
-
-  .notification-container {
-    min-width: 100px;
-    font-size: 12px;
-  }
-
-  .notification-label {
-    font-size: 11px;
-    min-width: 35px;
-  }
-
-  .notification-text {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .notifications-display {
-    padding: 0 8px;
-  }
-
-  .notification-container {
-    padding: 3px 6px;
-    min-width: 80px;
-  }
-
-  .notification-label {
-    font-size: 10px;
-    min-width: 30px;
-  }
-
-  .notification-text {
-    font-size: 11px;
-  }
-}
-
-.notification-container {
-  transition: all 0.3s ease;
-}
-
-.notification-text {
-  transition: color 0.3s ease;
-}
-
-.notification-container.audio .notification-text {
-  color: #0071c5;
-}
-
-.notification-container.video .notification-text {
-  color: #0071c5;
 }
 
 .notification-text.loading {
@@ -150,8 +105,8 @@
   transform: translateY(-50%);
   width: 12px;
   height: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--moment-tint);
+  border-top: 2px solid var(--moment);
   border-radius: 50%;
   animation: notification-spin 1s linear infinite;
 }

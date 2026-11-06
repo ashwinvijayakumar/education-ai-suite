@@ -1,20 +1,18 @@
 /* Report Panel - Slide-in sidebar based on report-ui-demo.html */
 
+/* Aliases onto the suite tokens; --success, --radius and --radius-sm come from tokens.css. */
 :root {
-  --intel-blue: #0071c5;
-  --intel-blue-dark: #005a9e;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f7fa;
-  --bg-tertiary: #edf0f5;
-  --text-primary: #1a1a2e;
-  --text-secondary: #5a6374;
-  --text-tertiary: #8c95a6;
-  --border-color: #dfe3e8;
-  --success: #00a854;
-  --error: #f5222d;
-  --shadow-panel: -4px 0 24px rgba(0,0,0,0.12);
-  --radius: 8px;
-  --radius-sm: 4px;
+  --intel-blue: var(--brand);
+  --intel-blue-dark: var(--brand-hover);
+  --bg-primary: var(--surface);
+  --bg-secondary: var(--paper);
+  --bg-tertiary: var(--paper);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-tertiary: var(--ink-2);
+  --border-color: var(--line);
+  --error: var(--danger);
+  --shadow-panel: -4px 0 24px rgb(27 30 60 / 0.12);
 }
 
 /* Overlay */
@@ -218,7 +216,7 @@
    distinct from the green ✓ done indicator so users read it as "click me". */
 .template-action-btn.apply-action {
   background: #f0a020;
-  color: #1a1a2e;
+  color: var(--ink);
   margin-bottom: 8px;
   border: 1px solid #d98a12;
 }
@@ -384,8 +382,8 @@
   z-index: 20;
   min-width: 220px;
   padding: 6px;
-  background: #fff;
-  border: 1px solid #dfe3e8;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
 }
@@ -409,11 +407,11 @@
 }
 
 .report-download-item:hover {
-  background: var(--surface-hover, #f1f4f8);
+  background: var(--surface-hover, var(--paper));
 }
 
 .report-download-item:disabled {
-  color: var(--text-secondary, #8a94a6);
+  color: var(--text-secondary, var(--ink-2));
   cursor: not-allowed;
 }
 
@@ -453,14 +451,14 @@
   background: transparent;
   border: none;
   border-radius: 50%;
-  color: var(--text-secondary, #8a94a6);
+  color: var(--text-secondary, var(--ink-2));
   font-size: 14px;
   line-height: 1;
   cursor: help;
 }
 
 .report-pdf-hint-icon:hover {
-  color: var(--intel-blue, #0071c5);
+  color: var(--intel-blue, var(--brand));
 }
 
 .report-pdf-hint-bubble {
@@ -507,20 +505,20 @@
   overflow-y: auto;
   padding: 14px 16px;
   margin-bottom: 14px;
-  background: #fff;
-  border: 1px solid #dfe3e8;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 8px;
   font-size: 13px;
   line-height: 1.6;
-  color: var(--text-primary, #1a1a2e);
+  color: var(--text-primary, var(--ink));
 }
 .report-markdown h1 { font-size: 18px; margin: 0 0 10px; }
 .report-markdown h2 { font-size: 15px; margin: 16px 0 8px; }
 .report-markdown h3 { font-size: 14px; margin: 12px 0 6px; }
 .report-markdown table { border-collapse: collapse; width: 100%; margin: 8px 0; }
-.report-markdown th, .report-markdown td { border: 1px solid #dfe3e8; padding: 5px 8px; text-align: left; }
+.report-markdown th, .report-markdown td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
 .report-markdown ul, .report-markdown ol { padding-left: 20px; margin: 6px 0; }
-.report-markdown img { max-width: 100%; height: auto; display: block; margin: 8px 0; border: 1px solid #edf0f5; border-radius: 6px; }
+.report-markdown img { max-width: 100%; height: auto; display: block; margin: 8px 0; border: 1px solid var(--line); border-radius: 6px; }
 
 /* Compact left-aligned header now that the report body renders inline */
 .report-state-done { text-align: left; padding: 8px 0 0; }
@@ -555,5 +553,5 @@
   color: var(--text-primary);
   background: var(--bg-primary);
 }
-.field-manual-input:focus { border-color: var(--intel-blue); outline: none; }
+.field-manual-input:focus { border-color: var(--intel-blue); }
 .field-manual-input:disabled { background: var(--bg-tertiary); color: var(--text-tertiary); }

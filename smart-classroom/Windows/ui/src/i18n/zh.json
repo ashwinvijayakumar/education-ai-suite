@@ -811,7 +811,10 @@
     "toggle": "切换菜单",
     "navigation": "导航",
     "home": "主页",
-    "appMenu": "应用程序菜单"
+    "appMenu": "应用程序菜单",
+    "display": "显示",
+    "desk": "桌面",
+    "board": "大屏"
   },
   "tabs": {
     "transcripts": "转录",
@@ -899,6 +902,7 @@
     "anErrorOccurred": "发生了错误"
   },
   "summary": {
+    "aiDraft": "AI 草稿",
     "boardOcrPartial": "板书 OCR 仍在进行中。本次摘要仅包含目前已识别的板书内容，可能不完整。",
     "overload": {
       "memory_short": "当前可用内存低于本节课所需。摘要计划未作调整，通常仍可完成；若失败，请关闭其他程序后重试。",

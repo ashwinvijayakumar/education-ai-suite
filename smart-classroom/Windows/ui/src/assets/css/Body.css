@@ -4,7 +4,7 @@
   flex: 1 1 auto;
   min-height: 0;
   position: relative;
-  background: #f5f7fa;
+  background: var(--paper);
   z-index: 1000;
 }
 
@@ -14,12 +14,12 @@
   overflow-y: auto;
   min-height: 0;
   box-sizing: border-box;
-  padding: 12px 12px 12px 18px;
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-5);
 }
 
 .left-panel {
   flex: 1;
-  background-color: #f8f8f8;
+  background-color: var(--paper);
 }
 
 .right-panel-slot {
@@ -39,17 +39,22 @@
   /* Must beat `.left-panel`'s z-index: 1000 (it is positioned, so it would
      otherwise paint over the toggle) while staying below modals (10001+). */
   z-index: 1100;
-  color: #0071c5;
-  background: #fff;
+  color: var(--brand);
+  background: var(--surface);
   border-radius: 50%;
-  border: 1px solid #e6e7e8;
+  border: 0.125rem solid var(--line);
   width: 28px;
   height: 28px;
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: left 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  transition: left var(--dur-slow) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.arrow:hover {
+  border-color: var(--brand);
 }
 
 .arrow.collapsed {

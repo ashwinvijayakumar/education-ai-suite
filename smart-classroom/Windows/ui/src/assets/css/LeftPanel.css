@@ -4,8 +4,7 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  /* padding: 12px 8px; */
-  background: #f8f8f8;
+  background: var(--paper);
   position: relative;
   z-index: 1000;
 }
@@ -27,50 +26,62 @@
 }
 
 .cs-health-banner {
-  background: #fdecea;
-  border: 1px solid #d32f2f;
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin: 8px 12px 0;
+  background: var(--danger-tint);
+  border-inline-start: 0.375rem solid var(--danger);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  margin: var(--space-2) var(--space-3) 0;
 }
 
 .cs-health-banner__text {
-  font-size: 12px;
-  line-height: 16px;
-  color: #b71c1c;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  color: var(--ink);
 }
 
-
+/* Lesson tabs (Transcripts, AI summary, Mind map): a segmented control */
 .tabs {
   display: flex;
   justify-content: flex-start;
-  background: transparent;
-  border-bottom: 1px solid #e6e7e8;
-  margin-bottom: 4px;
-  gap: 2px;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  margin: var(--space-3) 0 var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
 }
 
 .tabs button {
   flex: 1;
-  font-family: var(--font-text);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-gray-700);
-  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--target);
+  padding: 0 var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  color: var(--ink-2);
+  background: transparent;
   border: none;
-  padding: 10px 0;
-  border-radius: 0;
-  transition: color 0.2s, background 0.2s;
+  border-radius: var(--radius-pill);
+}
+
+.tabs button:hover:not(:disabled):not(.active) {
+  color: var(--ink);
+  background: var(--paper);
 }
 
 .tabs button.active {
-  color: var(--color-dark);
-  background: #e6e7e8;
-  border-bottom: 2px solid var(--color-theme);
+  color: var(--paper);
+  background: var(--ink);
 }
-  
+
 .tabs button:disabled {
-  opacity: 0.5;
+  background: transparent;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
@@ -78,11 +89,15 @@
   display: inline-block;
   width: 14px;
   height: 14px;
-  border: 2px solid #c5d7f0;
-  border-top-color: #3b5bdb;
+  border: 2px solid var(--during-tint);
+  border-top-color: var(--moment);
   border-radius: 50%;
-  margin-left: 6px;
   animation: tab-spin 0.8s linear infinite;
+}
+
+.tabs button.active .tab-spinner {
+  border-color: rgb(255 255 255 / 0.35);
+  border-top-color: var(--during-vivid);
 }
 
 @keyframes tab-spin {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import NotificationsDisplay from '../Display/NotificationsDisplay';
+import Icon from '../common/Icon';
 import '../../assets/css/HeaderBar.css';
 import recordON from '../../assets/images/recording-on.svg';
 import recordOFF from '../../assets/images/recording-off.svg';
@@ -820,15 +821,12 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ featureGuard, onViewReport, onVie
         )}
 
         <button
-          className="text-button"
+          className={`text-button record-button${isRecording ? ' is-recording' : ''}`}
           onClick={handleRecordClick}
           disabled={isRecordingDisabled}
           title={getRecordingTooltip()}
-          style={{
-            cursor: isRecordingDisabled ? 'not-allowed' : 'pointer',
-            opacity: isRecordingDisabled ? 0.6 : 1
-          }}
         >
+          <Icon name={isRecording ? 'stop' : 'mic'} />
           {isRecording ? t('header.stopRecording') : t('header.startRecording')}
         </button>
 
@@ -837,11 +835,8 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ featureGuard, onViewReport, onVie
           disabled={isUploadDisabled}
           onClick={!isUploadDisabled ? handleOpenUploadModal : undefined}
           title={t(uploadBlockerTooltipKey(uploadBlocker))}
-          style={{
-            opacity: isUploadDisabled ? 0.6 : 1,                           
-            cursor: isUploadDisabled ? 'not-allowed' : 'pointer'            
-          }}
         >
+          <Icon name="upload" />
           {t('header.uploadFile')}
         </button>
 
@@ -866,7 +861,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ featureGuard, onViewReport, onVie
           onClick={onViewReport}
           title={t('reportPanel.title', 'View Report')}
         >
-          <span className="action-icon">📊</span>
+          <Icon name="report" className="action-icon" />
           <span className="action-label">{t('reportPanel.short', 'Report')}</span>
         </button>
         <button
@@ -874,7 +869,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ featureGuard, onViewReport, onVie
           onClick={onViewHistory}
           title={t('history.title', 'Session history')}
         >
-          <span className="action-icon">🕘</span>
+          <Icon name="history" className="action-icon" />
           <span className="action-label">{t('history.short', 'History')}</span>
         </button>
       </div>

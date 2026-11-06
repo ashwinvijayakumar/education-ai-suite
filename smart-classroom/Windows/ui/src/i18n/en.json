@@ -275,7 +275,10 @@
       "toggle": "Toggle menu",
       "navigation": "Navigation",
       "home": "Home",
-      "appMenu": "Application menu"
+      "appMenu": "Application menu",
+      "display": "Display",
+      "desk": "Desk",
+      "board": "Board"
     },
     "tabs": {
       "transcripts": "Transcripts",
@@ -363,6 +366,7 @@
       "anErrorOccurred": "An error occurred"
     },
     "summary": {
+      "aiDraft": "AI draft",
       "boardOcrPartial": "Board OCR is still running. This summary only covers the board content recognized so far and may be incomplete.",
       "overload": {
         "memory_short": "This machine has less free memory than this lesson needs right now. The summary was not changed and will usually still finish — close other applications if it does not.",

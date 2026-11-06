@@ -1,47 +1,32 @@
+/* Record bar: the session's main actions and its live status */
 .header-bar {
   position: sticky;
-  top: 64px;
+  top: var(--top-panel-height);
   left: 0;
   right: 0;
   z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.5rem;
-  height: var(--header-bar-height);
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-5);
+  min-height: var(--header-bar-height);
   width: 100%;
-  background-color: #fff;
-  font-family: "IntelOne Display", var(--font-display), system-ui, sans-serif;
-  border-bottom: 1px solid #e6e7e8;
-}
-
-button.text-button {
-  font-family: "IntelOne Text", var(--font-text), system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #0071c5;
-  background: none;
-  border: 2px solid #82b6df; 
-  border-radius: 4px;
-  padding: 8px 16px;
-  margin-right: 12px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
+  background: var(--surface);
+  font-family: var(--font-body);
+  border-bottom: 1px solid var(--line);
 }
 
 .navbar-left {
   display: flex;
-  align-items: center; 
-  gap: 12px; 
+  align-items: center;
+  gap: var(--space-3);
   flex-shrink: 0;
 }
 
 .record-icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   display: inline-block;
   vertical-align: middle;
   margin: 0;
@@ -60,82 +45,78 @@ button.text-button {
   50% { opacity: 0.45; }
 }
 
-button.text-button:hover {
-  background: #0071c5;
-  color: #fff;
-  border-color: #6da5e0;
-}
-
-.error-banner {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 8px 16px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  text-align: center;
-  font-family: "IntelOne Text", var(--font-text), system-ui, sans-serif;
-  font-size: 14px;
-}
-
-.upload-button {
-  font-family: "IntelOne Text", var(--font-text), system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #0071c5;
-  background: none;
-  border: 2px solid #82b6df; 
-  border-radius: 4px;
-  padding: 8px 16px;
-  margin-right: 12px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  display: inline-block;
-  text-align: center;
+/* Start recording is the primary action (red while live); Upload is secondary.
+   Both sit on a shelf that sinks when pressed. */
+.header-bar .record-button,
+.header-bar .upload-button {
+  --btn-shelf: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--target);
+  margin: 0 0 var(--shelf);
+  padding: 0 var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
   white-space: nowrap;
+  border: 0.125rem solid transparent;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 var(--shelf) 0 var(--btn-shelf);
 }
 
-.upload-button:hover {
-  background: #0071c5;
-  color: #fff;
-  border-color: #6da5e0;
+.header-bar .record-button svg,
+.header-bar .upload-button svg {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
 }
 
-.report-button {
-  font-family: "IntelOne Text", var(--font-text), system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #0071c5;
-  background: none;
-  border: 2px solid #82b6df;
-  border-radius: 4px;
-  padding: 8px 16px;
-  margin-right: 12px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
+.header-bar .record-button {
+  --btn-shelf: var(--brand-strong);
+  color: var(--on-brand);
+  background: var(--brand);
 }
 
-.report-button:hover {
-  background: #0071c5;
-  color: #fff;
-  border-color: #6da5e0;
+.header-bar .record-button:hover:not(:disabled) {
+  background: var(--brand-hover);
 }
 
-.upload-button:disabled,
-.upload-button[disabled] {
-  color: #bbbaba;
-  background: #f9f6f6;
-  border: 2px solid #e6e7e8;
-  cursor: not-allowed;
+.header-bar .record-button.is-recording {
+  --btn-shelf: #8a1520;
+  background: var(--danger);
 }
 
-button.text-button:disabled,
-button.text-button[disabled] {
-  color: #bbbaba;
-  background: #f9f6f6;
-  border: 2px solid #e6e7e8;
+.header-bar .record-button.is-recording:hover:not(:disabled) {
+  background: #a51a28;
+}
+
+.header-bar .upload-button {
+  --btn-shelf: var(--line-strong);
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line-strong);
+}
+
+.header-bar .upload-button:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.header-bar .record-button:active:not(:disabled),
+.header-bar .upload-button:active:not(:disabled) {
+  transform: translateY(var(--shelf));
+  box-shadow: 0 0 0 var(--btn-shelf);
+}
+
+.header-bar .record-button:disabled,
+.header-bar .upload-button:disabled {
+  color: var(--ink-2);
+  background: var(--line);
+  border-color: transparent;
+  box-shadow: none;
+  opacity: 1;
   cursor: not-allowed;
 }
 
@@ -146,29 +127,14 @@ button.text-button[disabled] {
    of being clipped. It scales with font-size, so the breakpoints need nothing. */
 .timer {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
   font-variant-numeric: tabular-nums;
-  color: #2B2C30;
+  color: var(--danger);
   min-width: 5ch;
   text-align: center;
-  margin-right: 12px;
   vertical-align: middle;
   flex-shrink: 0;
-}
-
-.notifications-display {
-  font-family: "IntelOne Text", var(--font-text), system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: #2B2C30;
-  background: none;
-  line-height: 16px;
-  gap: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .navbar-center {
@@ -183,308 +149,114 @@ button.text-button[disabled] {
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
   flex-shrink: 0;
 }
 
-/* Report and Session history. Borderless, unlike the outlined .text-button and
-   .upload-button on the left: those start work, these just open a panel over
-   it, and four boxed buttons would read as one undifferentiated toolbar. */
+/* Report and Session history: quiet buttons. Unlike the shelved buttons on the
+   left, which start work, these just open a panel over it. */
 .navbar-action-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: none;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--target);
+  min-width: var(--target);
+  padding: 0 var(--space-4);
+  background: transparent;
   border: none;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-family: "IntelOne Text", var(--font-text), system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #0071c5;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--brand);
   cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
   white-space: nowrap;
 }
 
 .navbar-action-btn:hover:not(:disabled) {
-  background: rgba(0, 113, 197, 0.08);
+  background: var(--brand-tint);
 }
 
 .navbar-action-btn:disabled {
-  opacity: 0.45;
+  color: var(--ink-2);
+  background: transparent;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .navbar-action-btn .action-icon {
-  font-size: 15px;
-  line-height: 1;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
 }
 
-/* The notification text in the centre needs the room more than these labels do;
-   the icon plus its title attribute still identifies the button. */
+/* The status in the centre needs the room more than these labels do; the icon
+   plus its title attribute still identifies the button. */
 @media (max-width: 1100px) {
   .navbar-action-btn .action-label {
     display: none;
   }
 
   .navbar-action-btn {
-    padding: 6px 8px;
+    padding: 0;
   }
 }
 
-/* Large Desktop (1200px and up) */
-@media (min-width: 1200px) {
-  :root {
-    --header-bar-height: 64px;
-  }
-  
-  button.text-button,
-  .upload-button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-  
-  .timer {
-    font-size: 16px;
-  }
-  
-  .notifications-display {
-    font-size: 14px;
-  }
-  
-}
-
-/* Desktop (992px to 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .navbar-left {
-    gap: 10px;
-  }
-  
-}
-
-/* Tablet (768px to 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
-  :root {
-    --header-bar-height: 52px;
-  }
-
+@media (max-width: 991px) {
   .header-bar {
-    padding: 0 1rem;
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-3);
   }
-  
+
   .navbar-left {
-    gap: 8px;
+    gap: var(--space-2);
   }
-  
-  button.text-button,
-  .upload-button {
-    font-size: 13px;
-    padding: 6px 12px;
-    margin-right: 8px;
-  }
-  
-  .timer {
-    font-size: 13px;
-    margin-right: 8px;
-  }
-  
-  .notifications-display {
-    font-size: 11px;
-  }
-  
-  .record-icon {
-    width: 20px;
-    height: 20px;
+
+  .header-bar .record-button,
+  .header-bar .upload-button {
+    padding: 0 var(--space-4);
+    font-size: var(--text-sm);
   }
 }
 
-/* Mobile Large (576px to 767px) */
-@media (min-width: 576px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .header-bar {
     flex-wrap: wrap;
-    min-height: auto;
-    padding: 8px 12px;
-    height: auto;
   }
-  
+
   .navbar-left {
-    gap: 6px;
     flex: 1;
     min-width: 0;
   }
-  
+
   .navbar-center {
     order: 3;
     width: 100%;
-    margin-top: 8px;
+    flex-basis: 100%;
     justify-content: flex-start;
-  }
-  
-  button.text-button,
-  .upload-button {
-    font-size: 12px;
-    padding: 6px 10px;
-    margin-right: 6px;
-  }
-  
-  .timer {
-    font-size: 12px;
-    margin-right: 6px;
-  }
-  
-  .notifications-display {
-    font-size: 10px;
-    gap: 4px;
-  }
-  
-  .record-icon {
-    width: 18px;
-    height: 18px;
   }
 }
 
-/* Mobile Medium (480px to 575px) */
-@media (min-width: 480px) and (max-width: 575px) {
-  .header-bar {
-    flex-wrap: wrap;
-    padding: 6px 10px;
-    height: auto;
-  }
-  
-  .navbar-left {
-    gap: 4px;
-    flex: 1;
-  }
-  
-  .navbar-center {
-    order: 3;
-    width: 100%;
-    margin-top: 6px;
-    justify-content: flex-start;
-  }
-  
-  button.text-button,
-  .upload-button {
-    font-size: 11px;
-    padding: 5px 8px;
-    margin-right: 4px;
-  }
-  
-  .timer {
-    font-size: 11px;
-    margin-right: 4px;
-  }
-  
-  .notifications-display {
-    font-size: 9px;
-    gap: 2px;
-  }
-  
-  .record-icon {
-    width: 16px;
-    height: 16px;
-  }
+/* Board text is large, so the status gets its own row instead of being clipped */
+html[data-display="board"] .header-bar {
+  flex-wrap: wrap;
 }
 
-/* Mobile Small (320px to 479px) */
+html[data-display="board"] .navbar-center {
+  order: 3;
+  flex-basis: 100%;
+  justify-content: flex-start;
+}
+
 @media (max-width: 479px) {
-  .header-bar {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 8px;
-    height: auto;
-    gap: 8px;
-  }
-  
   .navbar-left {
-    justify-content: space-between;
-    gap: 4px;
-    width: 100%;
+    flex-wrap: wrap;
   }
-  
-  .navbar-center {
-    order: 2;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  button.text-button,
-  .upload-button {
-    font-size: 10px;
-    padding: 4px 6px;
-    margin-right: 2px;
-    flex: 1;
-    max-width: 80px;
-  }
-  
-  .timer {
-    font-size: 10px;
-    margin-right: 2px;
-  }
-  
-  .notifications-display {
-    font-size: 8px;
-    gap: 2px;
-    text-align: center;
-  }
-  
-  .record-icon {
-    width: 14px;
-    height: 14px;
-  }
-}
 
-/* Extra Small Mobile (below 320px) */
-@media (max-width: 319px) {
-  .header-bar {
-    padding: 4px;
-    gap: 4px;
-  }
-  
-  button.text-button,
-  .upload-button {
-    font-size: 9px;
-    padding: 3px 4px;
-    max-width: 70px;
-  }
-  
-  .timer {
-    font-size: 9px;
-  }
-  
-  .notifications-display {
-    font-size: 7px;
-  }
-  
-  .record-icon {
-    width: 12px;
-    height: 12px;
-  }
-}
-
-/* Landscape orientation adjustments for mobile */
-@media (max-width: 767px) and (orientation: landscape) {
-  .header-bar {
-    height: 48px;
-    flex-wrap: nowrap;
-  }
-  
-  .navbar-center {
-    order: 2;
-    width: auto;
-    margin-top: 0;
+  .header-bar .record-button,
+  .header-bar .upload-button {
     flex: 1;
-  }
-  
-  .navbar-left {
-    flex-shrink: 1;
-  }
-  
-  button.text-button,
-  .upload-button {
-    padding: 4px 8px;
-    font-size: 11px;
   }
 }
 
@@ -498,47 +270,15 @@ button.text-button[disabled] {
 
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  button.text-button,
-  .upload-button {
-    transition: none;
-  }
-
   /* The red dot still distinguishes live from idle without the pulse. */
   .record-icon.is-recording {
     animation: none;
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .header-bar {
-    background-color: #1a1a1a;
-    border-bottom-color: #333;
-  }
-  
-  .timer,
-  .notifications-display {
-    color: #e0e0e0;
-  }
-  
-  button.text-button,
-  .upload-button {
-    color: #4da6ff;
-    border-color: #4da6ff;
-  }
-  
-  button.text-button:hover,
-  .upload-button:hover {
-    background: #4da6ff;
-    color: #1a1a1a;
-  }
-  
-  button.text-button:disabled,
-  button.text-button[disabled],
-  .upload-button:disabled,
-  .upload-button[disabled] {
-    color: #666;
-    background: #2a2a2a;
-    border-color: #444;
+@media (forced-colors: active) {
+  .header-bar .record-button,
+  .header-bar .upload-button {
+    border-color: ButtonText;
   }
 }

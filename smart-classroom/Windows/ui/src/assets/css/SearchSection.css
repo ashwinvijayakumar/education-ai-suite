@@ -2,44 +2,50 @@
 
 .cs-search-card {
   width: 100%;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  padding: 16px;
-  margin-top: 16px;
-  color: #2B2C30;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-5);
+  margin-top: var(--space-4);
+  color: var(--ink);
 }
 
-/* ───────── Section-level tab bar: Search | Q&A ───────── */
+/* ───────── Section-level tab bar: Search | Q&A (segmented control) ───────── */
 
 .cs-search-section-tabs {
   display: flex;
-  border-bottom: 2px solid #e6e7e8;
-  margin-bottom: 16px;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-4);
 }
 
 .cs-search-section-tab {
   flex: 1;
-  padding: 10px 0;
+  min-height: 2.5rem;
+  padding: 0 var(--space-4);
   background: none;
   border: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #6A6D75;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--ink-2);
   cursor: pointer;
-  transition: color 0.2s, background 0.2s;
   position: relative;
 }
 
 .cs-search-section-tab:hover {
-  color: #2B2C30;
-  background: #e6e7e8;
+  color: var(--ink);
+  background: var(--surface);
 }
 
-.cs-search-section-tab--active {
-  color: #2B2C30;
-  background: #e6e7e8;
-  border-bottom: 2px solid #0068b5;
+.cs-search-section-tab--active,
+.cs-search-section-tab--active:hover {
+  color: var(--paper);
+  background: var(--ink);
 }
 
 /* ───────── Header ───────── */
@@ -54,7 +60,7 @@
 .cs-search-title {
   font-size: 18px;
   font-weight: 600;
-  color: #2B2C30;
+  color: var(--ink);
 }
 
 .cs-search-chevron {
@@ -65,14 +71,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6A6D75;
+  color: var(--ink-2);
   transition: transform 0.2s ease;
   border-radius: 4px;
 }
 
 .cs-search-chevron:hover {
-  background: #f5f5f5;
-  color: #2B2C30;
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .cs-search-chevron--expanded {
@@ -94,7 +100,7 @@
   min-height: 32px;
   border-radius: 2px;
   padding: 8px;
-  background: #0054AE;
+  background: var(--brand-hover);
   margin-bottom: 14px;
   box-sizing: border-box;
 }
@@ -150,31 +156,32 @@
 
 .cs-search-tabs {
   display: flex;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--line);
   margin-bottom: 16px;
 }
 
 .cs-search-tab {
   flex: 1;
+  min-height: 2.5rem;
   padding: 10px 16px;
   background: none;
   border: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #6A6D75;
+  border-radius: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--ink-2);
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
 }
 
 .cs-search-tab:hover {
-  color: #2B2C30;
-  background: #f5f9ff;
+  color: var(--ink);
+  background: var(--paper);
 }
 
 .cs-search-tab--active {
-  color: #2B2C30;
-  font-weight: 600;
+  color: var(--moment);
 }
 
 .cs-search-tab--active::after {
@@ -183,8 +190,9 @@
   bottom: -2px;
   left: 0;
   right: 0;
-  height: 2px;
-  background: #1976d2;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--moment);
 }
 
 /* ───────── Search Content ───────── */
@@ -203,63 +211,62 @@
 .cs-search-label {
   font-size: 14px;
   font-weight: 500;
-  color: #2B2C30;
+  color: var(--ink);
 }
 
 .cs-search-char-count {
   font-size: 12px;
-  color: #888;
+  color: var(--ink-2);
 }
 
 .cs-search-textarea {
   width: 100%;
   min-height: 80px;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
   font-size: 14px;
   font-family: inherit;
   resize: vertical;
   transition: border-color 0.2s;
-  background: #f5f5f5;
+  background: var(--paper);
 }
 
 .cs-search-textarea:focus {
-  outline: none;
-  border-color: #1976d2;
+  border-color: var(--brand);
 }
 
 .cs-search-textarea::placeholder {
-  color: #aaa;
+  color: var(--ink-2);
 }
 
 /* ───────── Image Search Dropzone ───────── */
 
 .cs-search-dropzone {
-  border: 2px dashed #d0d0d0;
+  border: 2px dashed var(--line);
   border-radius: 6px;
   padding: 32px 16px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #fafafa;
+  background: var(--paper);
 }
 
 .cs-search-dropzone:hover,
 .cs-search-dropzone--active {
-  border-color: #1976d2;
-  background: #f0f7ff;
+  border-color: var(--brand);
+  background: var(--brand-tint);
 }
 
 .cs-search-dropzone-text {
   font-size: 14px;
-  color: #555;
+  color: var(--ink-2);
   margin: 0 0 4px 0;
 }
 
 .cs-search-dropzone-hint {
   font-size: 12px;
-  color: #888;
+  color: var(--ink-2);
   margin: 0;
 }
 
@@ -282,7 +289,7 @@
   max-width: 100%;
   max-height: 200px;
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
 }
 
 .cs-search-image-clear {
@@ -315,7 +322,7 @@
 .cs-search-type-label {
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: var(--ink);
   margin-bottom: 8px;
 }
 
@@ -336,7 +343,7 @@
   line-height: 16px;
   letter-spacing: 0;
   vertical-align: middle;
-  color: #444;
+  color: var(--ink);
   width: fit-content;
   flex-shrink: 0;
 }
@@ -370,7 +377,7 @@
 
 .cs-search-divider {
   height: 1px;
-  background: #e0e0e0;
+  background: var(--line);
   margin: 16px 0;
 }
 
@@ -388,13 +395,13 @@
 .cs-search-filter-label {
   font-size: 14px;
   font-weight: 500;
-  color: #494B51;
+  color: var(--ink);
   margin-bottom: 8px;
 }
 
 .cs-search-filter-box {
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
   min-height: 40px;
   background: white;
@@ -403,7 +410,7 @@
 }
 
 .cs-search-filter-box:hover {
-  border-color: #1976d2;
+  border-color: var(--brand);
 }
 
 .cs-search-filter-chips {
@@ -420,16 +427,16 @@
   gap: 4px;
   padding: 4px 8px;
   background: transparent;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
   font-size: 12px;
-  color: #333;
+  color: var(--ink);
 }
 
 .cs-search-chip-remove {
   background: none;
   border: none;
-  color: #888;
+  color: var(--ink-2);
   cursor: pointer;
   font-size: 12px;
   padding: 0;
@@ -437,7 +444,7 @@
 }
 
 .cs-search-chip-remove:hover {
-  color: #d32f2f;
+  color: var(--danger);
 }
 
 /* ───────── Filter Dropdown ───────── */
@@ -448,7 +455,7 @@
   left: 0;
   right: 0;
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 10;
@@ -463,12 +470,12 @@
   padding: 10px 12px;
   cursor: pointer;
   font-size: 13px;
-  color: #333;
+  color: var(--ink);
   transition: background 0.15s;
 }
 
 .cs-search-filter-dropdown-item:hover {
-  background: #f5f5f5;
+  background: var(--paper);
 }
 
 .cs-search-filter-dropdown-item input[type="checkbox"] {
@@ -480,7 +487,7 @@
 .cs-search-filter-dropdown-empty {
   padding: 12px;
   font-size: 13px;
-  color: #666;
+  color: var(--ink-2);
   text-align: center;
 }
 
@@ -499,26 +506,25 @@
 .cs-search-results-label {
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: var(--ink);
 }
 
 .cs-search-results-input {
   width: 80px;
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
   font-size: 14px;
   text-align: center;
 }
 
 .cs-search-results-input:focus {
-  outline: none;
-  border-color: #1976d2;
+  border-color: var(--brand);
 }
 
 .cs-search-results-input:disabled {
-  background: #f5f5f5;
-  color: #aaa;
+  background: var(--paper);
+  color: var(--ink-2);
   cursor: not-allowed;
 }
 
@@ -531,15 +537,15 @@
 }
 
 .cs-search-btn {
-  width: 80px;
-  height: 32px;
-  padding: 8px 16px;
+  min-width: 5rem;
+  min-height: 2.5rem;
+  padding: 0 var(--space-5);
   gap: 10px;
   opacity: 1;
-  border-radius: 4px;
-  font-weight: 500;
+  border-radius: var(--radius-pill);
+  font-weight: var(--weight-bold);
   font-style: normal;
-  font-size: 14px;
+  font-size: var(--text-sm);
   line-height: 16px;
   letter-spacing: 0px;
   cursor: pointer;
@@ -550,34 +556,35 @@
 }
 
 .cs-search-btn--primary {
-  background: #1976d2;
-  color: white;
+  background: var(--brand);
+  color: var(--on-brand);
   border: none;
+  box-shadow: 0 var(--shelf) 0 var(--brand-strong);
 }
 
 .cs-search-btn--primary:hover:not(:disabled) {
-  background: #1565c0;
+  background: var(--brand-hover);
 }
 
 .cs-search-btn--primary:disabled {
-  background: #b0bec5;
+  background: var(--line);
+  color: var(--ink-2);
+  box-shadow: none;
   cursor: default;
 }
 
 .cs-search-btn--primary.cs-search-btn--loading,
 .cs-search-btn--primary.cs-search-btn--loading:disabled {
-  width: 138px;
-  height: 32px;
-  background: #1976d2;
-  color: white;
+  min-width: 138px;
+  background: var(--brand);
+  color: var(--on-brand);
   border: none;
-  border-radius: 4px;
   cursor: default;
   opacity: 1;
 }
 
 .cs-search-btn--primary.cs-search-btn--loading:hover {
-  background: #1976d2;
+  background: var(--brand);
 }
 
 /* Spinner icon animation for loading button */
@@ -597,14 +604,13 @@
 }
 
 .cs-search-btn--secondary {
-  background: white;
-  color: #666;
-  border: 1px solid #ddd;
+  background: var(--surface);
+  color: var(--ink);
+  border: 0.125rem solid var(--line-strong);
 }
 
 .cs-search-btn--secondary:hover {
-  background: #f5f5f5;
-  border-color: #ccc;
+  border-color: var(--ink);
 }
 
 /* ───────── Search Disabled State ───────── */
@@ -628,7 +634,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  color: #2B2C30;
+  color: var(--ink);
   margin-bottom: 4px;
 }
 
@@ -636,7 +642,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #6A6D75;
+  color: var(--ink-2);
 }
 
 /* ─── Media Queries ──────────────────────────────────────── */

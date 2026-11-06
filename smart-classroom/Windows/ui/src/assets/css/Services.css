@@ -11,7 +11,7 @@
   gap: 12px;
   /* The panes scroll individually, so the screen itself must not. */
   overflow: hidden;
-  font-family: var(--font-text);
+  font-family: var(--font-body);
 }
 
 .services-split {
@@ -59,7 +59,7 @@
 .services-list {
   display: flex;
   flex-direction: column;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
   border-radius: 4px;
   overflow: auto;
   min-height: 0;
@@ -71,8 +71,8 @@
   gap: 2px;
   padding: 8px 12px;
   border-left: 3px solid transparent;
-  border-bottom: 1px solid #ececec;
-  background: #fafafa;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
   cursor: pointer;
   font-size: 13px;
 }
@@ -89,12 +89,12 @@
 }
 
 .services-row:hover {
-  background: #f0f0f0;
+  background: var(--paper);
 }
 
 .services-row.selected {
   border-left-color: var(--color-theme);
-  background: #e8f4f8;
+  background: var(--brand-tint);
 }
 
 .services-dot {
@@ -106,7 +106,7 @@
 }
 
 .services-dot.status-healthy {
-  background: #4caf50;
+  background: var(--success);
 }
 
 .services-dot.status-starting,
@@ -119,7 +119,7 @@
 }
 
 .services-dot.status-failed {
-  background: #d9534f;
+  background: var(--danger);
 }
 
 .services-row-label {
@@ -150,8 +150,8 @@
 .services-badge {
   padding: 1px 6px;
   border-radius: 8px;
-  background: #e0e6ea;
-  color: #55606a;
+  background: var(--line);
+  color: var(--ink-2);
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
@@ -167,7 +167,7 @@
 .services-row-meta {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #9aa0a8;
+  color: var(--ink-2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -190,7 +190,7 @@
   padding: 4px 12px;
   border: 1px solid var(--control-border-color);
   border-radius: var(--control-radius);
-  background: #fff;
+  background: var(--surface);
   color: var(--color-gray-900);
   font-size: 12px;
   cursor: pointer;
@@ -209,8 +209,8 @@
 .services-error {
   padding: 8px 12px;
   border-radius: 4px;
-  background: #fdecea;
-  color: #a33;
+  background: var(--danger-tint);
+  color: var(--danger);
   font-size: 12px;
 }
 
@@ -218,7 +218,7 @@
   padding: 10px 14px;
   border: 1px solid #bcdff5;
   border-radius: 4px;
-  background: #eff7fd;
+  background: var(--brand-tint);
   color: #24506e;
   font-size: 12.5px;
   line-height: 1.5;
@@ -226,7 +226,7 @@
 
 .services-disabled-note {
   font-size: 11px;
-  color: #8a8f98;
+  color: var(--ink-2);
 }
 
 /* --- log viewer --- */
@@ -236,7 +236,7 @@
   flex-direction: column;
   min-height: 0;
   height: 100%;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--line);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -246,8 +246,8 @@
   align-items: center;
   gap: 10px;
   padding: 6px 10px;
-  background: #f5f6f7;
-  border-bottom: 1px solid #e0e0e0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
 .services-logs-title {
@@ -288,7 +288,7 @@
 }
 
 .services-logs-empty {
-  color: #8a8f98;
+  color: var(--ink-2);
 }
 
 .services-log-line {
@@ -309,5 +309,5 @@
 
 .services-log-time {
   flex-shrink: 0;
-  color: #6f757d;
+  color: var(--ink-2);
 }

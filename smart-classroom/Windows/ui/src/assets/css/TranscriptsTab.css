@@ -1,6 +1,6 @@
 .chat-ui-root {
   width: 100%;
-  background: #f7f8fa;
+  background: var(--paper);
   padding: 0;
   min-height: 100vh;
 }
@@ -42,24 +42,25 @@
 
 .chat-bubble {
   min-width: 200px;
-  padding: 0.6em 1em;
-  border-radius: 1em;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
-  font-size: 0.95rem;
-  color: #222;
+  font-size: var(--text-md);
+  color: var(--ink);
   position: relative;
   word-wrap: break-word;
 }
 
 .teacher-bubble {
-  border-bottom-left-radius: 0.3em;
+  border-bottom-left-radius: var(--space-1);
 }
 
 .student-bubble {
-  border-bottom-right-radius: 0.3em;
+  border-bottom-right-radius: var(--space-1);
   align-items: flex-end;
 }
 
@@ -84,55 +85,54 @@
 
 .speaker-label {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 999px;
-  margin-bottom: 6px;
-  letter-spacing: 0.04em;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-2);
   width: fit-content;
 }
 
 .teacher-bubble .speaker-label {
-  background-color: #fff3cd;
-  color: #8a6d1d;
+  background-color: var(--moment-tint);
+  color: var(--moment);
 }
 
 .student-bubble .speaker-label {
-  background-color: #e7f3fe;
-  color: #1b4f72;
+  background-color: var(--brand-tint);
+  color: var(--brand-strong);
 }
 
 .speaker-text {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: var(--text-md);
+  line-height: var(--leading);
   white-space: pre-line;
   position: relative;
   will-change: contents;
 }
 
 .transcript-placeholder {
-  color: #888;
-  font-style: italic;
+  color: var(--ink-2);
 }
 
 .transcript-processing-notice {
   display: flex;
   align-items: center;
-  gap: 0.6em;
-  padding: 0.8em 1em;
-  border-radius: 0.75em;
-  background: #eef4ff;
-  color: #1b4f72;
-  font-size: 0.9rem;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  border-inline-start: 0.375rem solid var(--brand);
+  background: var(--brand-tint);
+  color: var(--ink);
+  font-size: var(--text-md);
 }
 
 .transcript-processing-spinner {
   flex: 0 0 auto;
   width: 1em;
   height: 1em;
-  border: 2px solid #b7d0f2;
-  border-top-color: #1b4f72;
+  border: 2px solid var(--line);
+  border-top-color: var(--brand);
   border-radius: 50%;
   animation: transcript-spin 0.9s linear infinite;
 }
@@ -143,7 +143,7 @@
 
 .typewriter-cursor {
   font-weight: bold;
-  color: #007bff;
+  color: var(--brand);
   animation: blink 1s infinite;
 }
 

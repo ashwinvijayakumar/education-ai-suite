@@ -24,19 +24,19 @@ servicePaths.ensureUserData();
 
 // Height (px) of the custom title bar strip. Matches the TopPanel so the
 // native Window Controls Overlay buttons align with the app header.
-const TITLE_BAR_HEIGHT = 63;
+const TITLE_BAR_HEIGHT = 67;
 
 // The Window Controls Overlay strip is painted by OS, not by the page, so a
 // DOM overlay cannot dim it. The renderer reports which surface is on top and we
 // recolour the caption to match.
 const TITLE_BAR_THEMES = {
-  // App header.
-  default: { color: '#0071c5', symbolColor: '#ffffff' },
-  // Brand blue and white composited under 50% black. Used by every surface that
+  // App header (suite surface white, ink symbols).
+  default: { color: '#ffffff', symbolColor: '#1b1e3c' },
+  // White and ink composited under 50% black. Used by every surface that
   // covers the caption: the modals, and the slide-over panels — those start
   // below the caption strip, so what reaches it is their backdrop, not the
   // panel itself.
-  dimmed: { color: '#003862', symbolColor: '#7f7f7f' },
+  dimmed: { color: '#808080', symbolColor: '#0e0f1e' },
 };
 
 // The overlay height is in device-independent pixels, but the TopPanel it must
@@ -47,7 +47,7 @@ const TITLE_BAR_THEMES = {
 // theme the renderer last asked for and the height last applied. Rounded down:
 // the height is whole DIPs, and rounding up lets the overlay cover the header's
 // bottom border by a device pixel (visible at 150% display scaling), while a
-// short overlay is invisible against the header's identical blue.
+// short overlay is invisible against the header's identical white.
 const titleBarState = new WeakMap();
 
 function applyTitleBarOverlay(win, theme) {
@@ -213,8 +213,8 @@ async function createWindow() {
     ...(process.platform !== 'darwin'
       ? {
         titleBarOverlay: {
-          color: '#0071c5',
-          symbolColor: '#ffffff',
+          color: '#ffffff',
+          symbolColor: '#1b1e3c',
           height: TITLE_BAR_HEIGHT,
         },
       }

@@ -4,18 +4,17 @@
   left: 0;
   right: 0;
   width: 100%;
-  background: var(--color-theme);
-  color: var(--color-light);
+  background: var(--surface);
+  color: var(--ink-2);
   text-align: center;
-  padding: 0 2rem;
-  height: 48px;
-  font-size: 1rem;
+  padding: 0 var(--space-5);
+  height: var(--footer-height);
+  font-size: var(--text-sm);
   z-index: 10;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
-  border-top: 1px solid #e6e7e8;
+  border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   overflow: auto;
 }

@@ -14,7 +14,7 @@
 }
 
 .fm-back-btn {
-  background: #1976d2;
+  background: var(--brand);
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
@@ -28,17 +28,17 @@
 }
 
 .fm-back-btn:hover {
-  background: #1565c0;
+  background: var(--brand-hover);
 }
 
 .fm-title {
   font-size: 18px;
   font-weight: 600;
-  color: #2b2b2b;
+  color: var(--ink);
 }
 
 .fm-refresh-btn {
-  background: #1976d2;
+  background: var(--brand);
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
@@ -54,7 +54,7 @@
 }
 
 .fm-refresh-btn:hover:not(:disabled) {
-  background: #1565c0;
+  background: var(--brand-hover);
 }
 
 .fm-refresh-btn:disabled {
@@ -70,16 +70,16 @@
   justify-content: center;
   gap: 10px;
   padding: 40px 20px;
-  color: #667085;
+  color: var(--ink-2);
   font-size: 13px;
-  font-family: var(--font-text);
+  font-family: var(--font-body);
 }
 
 .fm-spinner {
   width: 18px;
   height: 18px;
-  border: 2px solid #e4e7ec;
-  border-top-color: #0071c5;
+  border: 2px solid var(--line);
+  border-top-color: var(--brand);
   border-radius: 50%;
   animation: fm-spin 0.8s linear infinite;
 }
@@ -96,18 +96,18 @@
   align-items: center;
   gap: 12px;
   padding: 40px 20px;
-  color: #d92d20;
+  color: var(--danger);
   font-size: 13px;
-  font-family: var(--font-text);
+  font-family: var(--font-body);
 }
 
 .fm-error button {
-  background: #fee4e2;
+  background: var(--danger-tint);
   border: 1px solid #fda29b;
   border-radius: 6px;
   padding: 6px 16px;
   font-size: 12px;
-  color: #b42318;
+  color: var(--danger);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -123,9 +123,9 @@
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  color: #667085;
+  color: var(--ink-2);
   font-size: 13px;
-  font-family: var(--font-text);
+  font-family: var(--font-body);
   font-style: normal;
 }
 
@@ -141,23 +141,23 @@
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
 }
 
 .fm-file-table thead {
-  background: #f1f3f5;
+  background: var(--paper);
 }
 
 .fm-file-table th {
   font-size: 12px;
   font-weight: 600;
-  color: #37474f;
+  color: var(--ink);
   padding: 8px 10px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
 }
 
@@ -178,26 +178,26 @@
   border: none;
   padding: 4px;
   cursor: pointer;
-  color: #667085;
+  color: var(--ink-2);
   border-radius: 4px;
   transition: all 0.2s;
   position: relative;
 }
 
 .fm-filter-icon-btn:hover {
-  background: #e4e7ec;
-  color: #344054;
+  background: var(--line);
+  color: var(--ink);
 }
 
 .fm-filter-icon-btn.active {
-  color: #1976d2;
+  color: var(--brand);
 }
 
 .fm-filter-badge {
   position: absolute;
   top: -4px;
   right: -4px;
-  background: #1976d2;
+  background: var(--brand);
   color: white;
   font-size: 9px;
   font-weight: 600;
@@ -213,7 +213,7 @@
 .fm-filter-dropdown {
   position: fixed;
   background: white;
-  border: 1px solid #e4e7ec;
+  border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   min-width: 150px;
@@ -226,17 +226,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 4px 12px 8px;
-  border-bottom: 1px solid #f2f4f7;
+  border-bottom: 1px solid var(--line);
   margin-bottom: 4px;
   font-size: 11px;
   font-weight: 600;
-  color: #475467;
+  color: var(--ink-2);
 }
 
 .fm-filter-clear {
   background: none;
   border: none;
-  color: #1976d2;
+  color: var(--brand);
   font-size: 11px;
   cursor: pointer;
   padding: 2px 6px;
@@ -244,7 +244,7 @@
 }
 
 .fm-filter-clear:hover {
-  background: #e3f2fd;
+  background: var(--brand-tint);
 }
 
 .fm-filter-checkbox-label {
@@ -254,12 +254,12 @@
   padding: 6px 12px;
   cursor: pointer;
   font-size: 12px;
-  color: #344054;
+  color: var(--ink);
   transition: background 0.15s;
 }
 
 .fm-filter-checkbox-label:hover {
-  background: #f9fafb;
+  background: var(--paper);
 }
 
 .fm-filter-checkbox-label input[type="checkbox"] {
@@ -276,14 +276,14 @@
 }
 
 .fm-th-sortable:hover {
-  background: #f2f4f7;
+  background: var(--paper);
 }
 
 .fm-file-table td {
   font-size: 12px;
   padding: 8px 10px;
-  border-bottom: 1px solid #eeeeee;
-  font-family: var(--font-text);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
   vertical-align: middle;
 }
 
@@ -292,7 +292,7 @@
 }
 
 .fm-file-table tbody tr:hover {
-  background: #f9fafb;
+  background: var(--paper);
 }
 
 /* ─── File Info Cell ─────────────────────────────────────── */
@@ -306,7 +306,7 @@
 
 .fm-file-name {
   font-weight: 500;
-  color: #1d2939;
+  color: var(--ink);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -360,15 +360,15 @@
 }
 
 .fm-vs-badge--enabled {
-  background: #ecfdf3;
-  color: #067647;
+  background: var(--success-tint);
+  color: var(--success);
   border: 1px solid #abefc6;
 }
 
 .fm-vs-badge--disabled {
-  background: #f2f4f7;
-  color: #667085;
-  border: 1px solid #e4e7ec;
+  background: var(--paper);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
 }
 
 /* ─── Tags ───────────────────────────────────────────────── */
@@ -384,8 +384,8 @@
 .fm-tag {
   display: inline-block;
   padding: 2px 8px;
-  background: #eff8ff;
-  color: #175cd3;
+  background: var(--brand-tint);
+  color: var(--brand);
   border-radius: 4px;
   font-size: 10px;
   font-weight: 500;
@@ -397,7 +397,7 @@
 
 .fm-created-at {
   font-size: 11px;
-  color: #667085;
+  color: var(--ink-2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -424,7 +424,7 @@
 .fm-remove-btn {
   background: none;
   border: none;
-  color: #e51111;
+  color: var(--danger);
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
@@ -433,7 +433,7 @@
 }
 
 .fm-remove-btn:hover:not(:disabled) {
-  color: #c62828;
+  color: var(--danger);
 }
 
 .fm-remove-btn:disabled {

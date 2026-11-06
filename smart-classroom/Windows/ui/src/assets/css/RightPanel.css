@@ -1,8 +1,8 @@
 .right-panel {
   flex: 1;
   position: relative;
-  background: #f9f9f9;
-  border-left: 1px solid #ddd;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -41,19 +41,19 @@
 
 .accordion-value {
   font-size: 0.85rem;
-  color: #333;
+  color: var(--ink);
   word-break: break-word;
   margin-top: 4px;
 }
 
 .right-panel .accordion-content {
   font-weight: bold;
-  color: #333;
+  color: var(--ink);
 }
 
 .right-panel .accordion-content p {
   font-weight: normal;
-  color: #333;
+  color: var(--ink);
 }
 
 .right-panel .dropdown {
@@ -84,7 +84,7 @@
 .chart-title {
   margin: 0 0 10px 0;
   font-size: 14px;
-  color: #333;
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -150,13 +150,13 @@
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.6rem;
-  color: #2d3748;
+  color: var(--ink);
 }
 
 
 .configuration-metrics p {
   font-size: 0.9rem;
-  color: #4a5568;
+  color: var(--ink-2);
   margin: 0.2rem 0;
   line-height: 1.4;
 }
@@ -164,7 +164,7 @@
 
 .right-panel .accordion-subtitle {
   font-size: 0.85rem;
-  color: #718096;
+  color: var(--ink-2);
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -180,14 +180,14 @@
 
 .configuration-metrics p {
   font-size: 0.9rem;
-  color: #4a5568;
+  color: var(--ink-2);
   margin: 0.2rem 0;
   line-height: 1.4;
 }
 
 .configuration-metrics p strong {
   font-weight: 600;
-  color: #2d3748;
+  color: var(--ink);
   margin-right: 0.3rem;
 }
 

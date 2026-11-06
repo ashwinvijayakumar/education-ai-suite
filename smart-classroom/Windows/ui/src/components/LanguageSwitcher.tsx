@@ -12,9 +12,9 @@ const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
   return (
     <select
+      className="language-switcher"
       value={i18n.language}
       onChange={e => i18n.changeLanguage(e.target.value)}
-      style={{ marginRight: '16px', padding: '4px 8px', borderRadius: '4px' }}
       aria-label="Language Switch"
     >
       <option value="en">English</option>

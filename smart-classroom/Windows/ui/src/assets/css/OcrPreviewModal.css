@@ -11,7 +11,7 @@
 .cs-ocr-preview-modal {
   width: 560px;
   max-height: 80vh;
-  background: #FFFFFF;
+  background: var(--surface);
   border-radius: 4px;
   padding: 24px;
   display: flex;
@@ -29,10 +29,10 @@
 }
 
 .cs-ocr-preview-title {
-  font-family: var(--font-body, sans-serif);
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
-  color: #2B2C30;
+  color: var(--ink);
   line-height: 20px;
 }
 
@@ -61,7 +61,7 @@
 
 .cs-ocr-preview-divider {
   height: 1px;
-  background: #E6E7E8;
+  background: var(--line);
   margin: -12px 0;
 }
 
@@ -74,10 +74,10 @@
 }
 
 .cs-ocr-preview-text {
-  font-family: var(--font-body, sans-serif);
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
-  color: #2B2C30;
+  color: var(--ink);
   line-height: 20px;
   letter-spacing: 0.32px;
   white-space: pre-wrap;
@@ -87,7 +87,7 @@
 
 .cs-ocr-preview-loading {
   font-size: 13px;
-  color: #607d8b;
+  color: var(--ink-2);
   font-style: italic;
 }
 
@@ -98,23 +98,23 @@
 }
 
 .cs-ocr-download-btn {
-  background: #FFFFFF;
+  background: var(--surface);
   border: 1px solid #8D8D93;
   border-radius: 4px;
   padding: 8px 16px;
-  font-family: 'IntelOne Text', var(--font-body, sans-serif);
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0px;
-  color: #2B2C30;
+  color: var(--ink);
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .cs-ocr-download-btn:hover {
-  background: #0071c5;
-  border-color: #0071c5;
+  background: var(--brand);
+  border-color: var(--brand);
   color: #FFFFFF;
 }
 

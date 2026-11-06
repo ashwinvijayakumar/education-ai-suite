@@ -28,12 +28,12 @@
 .cs-qa-disabled-title {
   font-size: 14px;
   font-weight: 600;
-  color: #6A6D75;
+  color: var(--ink-2);
 }
 
 .cs-qa-disabled-hint {
   font-size: 12px;
-  color: #9A9DA5;
+  color: var(--ink-2);
 }
 
 /* ── Tag filter row ── */
@@ -49,7 +49,7 @@
 .cs-qa-filter-label {
   font-size: 13px;
   font-weight: 500;
-  color: #555;
+  color: var(--ink-2);
   line-height: 32px;
   white-space: nowrap;
 }
@@ -67,22 +67,22 @@
   gap: 4px;
   min-height: 32px;
   padding: 4px 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
-  background: #f9f9f9;
+  background: var(--paper);
   cursor: pointer;
   font-size: 13px;
-  color: #555;
+  color: var(--ink-2);
   transition: border-color 0.2s;
 }
 
 .cs-qa-tag-trigger:hover {
-  border-color: #1976d2;
+  border-color: var(--brand);
 }
 
 .cs-qa-tag-chevron {
   margin-left: auto;
-  color: #888;
+  color: var(--ink-2);
   transition: transform 0.2s;
   flex-shrink: 0;
 }
@@ -94,8 +94,8 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background: #e3f0ff;
-  color: #1565c0;
+  background: var(--brand-tint);
+  color: var(--brand-hover);
   border-radius: 3px;
   padding: 1px 6px;
   font-size: 12px;
@@ -105,7 +105,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #1565c0;
+  color: var(--brand-hover);
   padding: 0;
   line-height: 1;
   font-size: 14px;
@@ -122,7 +122,7 @@
   right: 0;
   z-index: 50;
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-height: 200px;
@@ -136,12 +136,12 @@
   padding: 8px 12px;
   cursor: pointer;
   font-size: 13px;
-  color: #333;
+  color: var(--ink);
   transition: background 0.15s;
 }
 
 .cs-qa-tag-option:hover {
-  background: #f0f7ff;
+  background: var(--brand-tint);
 }
 
 .cs-qa-tag-option input[type="checkbox"] {
@@ -176,7 +176,7 @@
   background: transparent;
 }
 .cs-qa-messages::-webkit-scrollbar-thumb {
-  background: #ddd;
+  background: var(--line);
   border-radius: 2px;
 }
 
@@ -185,7 +185,7 @@
   align-items: center;
   justify-content: center;
   height: 120px;
-  color: #aaa;
+  color: var(--ink-2);
   font-size: 13px;
   font-style: italic;
   text-align: center;
@@ -219,20 +219,20 @@
 }
 
 .cs-qa-message--user .cs-qa-bubble {
-  background: #1976d2;
+  background: var(--brand);
   color: white;
   border-bottom-right-radius: 3px;
 }
 
 .cs-qa-message--assistant .cs-qa-bubble {
-  background: #f2f3f5;
-  color: #2B2C30;
+  background: var(--paper);
+  color: var(--ink);
   border-bottom-left-radius: 3px;
 }
 
 .cs-qa-message--error .cs-qa-bubble {
-  background: #fff0f0;
-  color: #c62828;
+  background: var(--danger-tint);
+  color: var(--danger);
   border: 1px solid #ffcdd2;
 }
 
@@ -243,7 +243,7 @@
   align-items: center;
   gap: 5px;
   padding: 12px 16px;
-  background: #f2f3f5;
+  background: var(--paper);
   border-radius: 12px;
   border-bottom-left-radius: 3px;
   width: fit-content;
@@ -279,7 +279,7 @@
 .cs-qa-sources-label {
   font-size: 11px;
   font-weight: 600;
-  color: #888;
+  color: var(--ink-2);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -293,9 +293,9 @@
 .cs-qa-source-chip {
   display: inline-flex;
   align-items: center;
-  background: #f0f7ff;
+  background: var(--brand-tint);
   border: 1px solid #bbdefb;
-  color: #1565c0;
+  color: var(--brand-hover);
   border-radius: 4px;
   padding: 2px 8px;
   font-size: 11.5px;
@@ -311,15 +311,15 @@
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 8px 8px 8px 12px;
-  background: #f9f9f9;
+  background: var(--paper);
   transition: border-color 0.2s;
 }
 
 .cs-qa-input-row:focus-within {
-  border-color: #1976d2;
+  border-color: var(--brand);
   background: white;
 }
 
@@ -331,15 +331,14 @@
   font-size: 13.5px;
   font-family: inherit;
   line-height: 1.5;
-  color: #2B2C30;
-  outline: none;
+  color: var(--ink);
   min-height: 40px;
   max-height: 120px;
   overflow-y: auto;
 }
 
 .cs-qa-textarea::placeholder {
-  color: #aaa;
+  color: var(--ink-2);
 }
 
 .cs-qa-send-btn {
@@ -349,8 +348,8 @@
   padding: 0;
   border-radius: 50%;
   border: none;
-  background: #e0e0e0;
-  color: #999;
+  background: var(--line);
+  color: var(--ink-2);
   cursor: not-allowed;
   display: flex;
   align-items: center;
@@ -359,19 +358,19 @@
 }
 
 .cs-qa-send-btn--active {
-  background: #1976d2;
+  background: var(--brand);
   color: white;
   cursor: pointer;
 }
 
 .cs-qa-send-btn--active:hover {
-  background: #1565c0;
+  background: var(--brand-hover);
   transform: scale(1.05);
 }
 
 .cs-qa-input-hint {
   font-size: 11px;
-  color: #b0b3bb;
+  color: var(--ink-2);
   margin-top: 4px;
   text-align: right;
 }

@@ -2,9 +2,20 @@ import React, { useRef, useState, useEffect } from 'react';
 import '../../assets/css/TopPanel.css';
 import BrandSlot from '../../assets/images/BrandSlot.svg';
 import LanguageSwitcher from '../LanguageSwitcher';
+import Icon from '../common/Icon';
 import { useTranslation } from 'react-i18next';
 import { isServiceManagerAvailable } from '../../services/serviceManager';
 import type { FeatureGuard } from '../../utils/featureGuards';
+
+// Desk for the teacher's laptop; Board scales the UI for a classroom panel.
+const DISPLAY_MODES = ['desk', 'board'] as const;
+type DisplayMode = (typeof DISPLAY_MODES)[number];
+const DISPLAY_KEY = 'smart-classroom.display';
+
+const initialDisplay = (): DisplayMode => {
+  const requested = new URLSearchParams(window.location.search).get('display') ?? localStorage.getItem(DISPLAY_KEY);
+  return DISPLAY_MODES.find((mode) => mode === requested) ?? 'desk';
+};
 
 interface TopPanelProps {
   activeScreen: 'main' | 'content-search' | 'grading' | 'services' | 'config' | 'setup' | 'ready';
@@ -23,6 +34,12 @@ const TopPanel: React.FC<TopPanelProps> = ({
   const navToggleRef = useRef<HTMLButtonElement>(null);
   const { t } = useTranslation();
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
+  const [display, setDisplay] = useState<DisplayMode>(initialDisplay);
+
+  useEffect(() => {
+    document.documentElement.dataset.display = display;
+    localStorage.setItem(DISPLAY_KEY, display);
+  }, [display]);
 
   const isElectron = !!window.electronAPI?.isElectron;
   const hasServiceManager = isServiceManagerAvailable();
@@ -74,13 +91,10 @@ const TopPanel: React.FC<TopPanelProps> = ({
         className="nav-menu-toggle"
         onClick={toggleNavMenu}
         aria-label={t('menu.toggle', 'Toggle menu')}
+        aria-expanded={isNavMenuOpen}
         title={t('menu.toggle', 'Toggle menu')}
       >
-        <span className="hamburger-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
+        <Icon name="menu" />
       </button>
       {isNavMenuOpen && (
         <div className="nav-menu-dropdown">
@@ -88,80 +102,90 @@ const TopPanel: React.FC<TopPanelProps> = ({
             <span>{t('menu.navigation', 'Navigation')}</span>
           </div>
           <ul className="nav-menu-list">
-            <li
-              className={`${activeScreen === 'main' ? 'active' : ''} ${!hasMainFeatures ? 'no-click' : ''}`}
-              onClick={() => hasMainFeatures && handleNavItemClick(() => setActiveScreen('main'))}
-            >
-              <span className="menu-icon">🏠</span>
-              <span className={!hasMainFeatures ? 'disabled' : ''}>{t('menu.home', 'Home')}</span>
+            <li className={activeScreen === 'main' ? 'active' : ''}>
+              <button
+                type="button"
+                disabled={!hasMainFeatures}
+                aria-current={activeScreen === 'main' ? 'page' : undefined}
+                onClick={() => handleNavItemClick(() => setActiveScreen('main'))}
+              >
+                <Icon name="home" className="menu-icon" />
+                <span>{t('menu.home', 'Home')}</span>
+              </button>
             </li>
-            <li
-              className={`${activeScreen === 'content-search' ? 'active' : ''} ${!hasContentSearchFeatures ? 'no-click' : ''}`}
-              onClick={() => hasContentSearchFeatures && handleNavItemClick(() => setActiveScreen('content-search'))}
-            >
-              <span className="menu-icon">🔍</span>
-              <span className={!hasContentSearchFeatures ? 'disabled' : ''}>{t('contentSearch.title', 'Content Search')}</span>
+            <li className={activeScreen === 'content-search' ? 'active' : ''}>
+              <button
+                type="button"
+                disabled={!hasContentSearchFeatures}
+                aria-current={activeScreen === 'content-search' ? 'page' : undefined}
+                onClick={() => handleNavItemClick(() => setActiveScreen('content-search'))}
+              >
+                <Icon name="search" className="menu-icon" />
+                <span>{t('contentSearch.title', 'Content Search')}</span>
+              </button>
             </li>
-            <li
-              className={`${activeScreen === 'grading' ? 'active' : ''} ${!hasGradingFeature ? 'no-click' : ''}`}
-              onClick={() => hasGradingFeature && handleNavItemClick(() => setActiveScreen('grading'))}
-            >
-              <span className="menu-icon">📝</span>
-              <span className={!hasGradingFeature ? 'disabled' : ''}>{t('grading.title', 'Grading')}</span>
+            <li className={activeScreen === 'grading' ? 'active' : ''}>
+              <button
+                type="button"
+                disabled={!hasGradingFeature}
+                aria-current={activeScreen === 'grading' ? 'page' : undefined}
+                onClick={() => handleNavItemClick(() => setActiveScreen('grading'))}
+              >
+                <Icon name="grading" className="menu-icon" />
+                <span>{t('grading.title', 'Grading')}</span>
+              </button>
             </li>
             {/* Report and Session history are not here: they open slide-over
                 panels rather than navigating, so they are buttons on the header
                 bar, next to the audio/video status they belong with. */}
             {/* Electron only: supervision of the Python backend processes */}
             {hasServiceManager && (
-              <li
-                className={`nav-menu-tools${activeScreen === 'ready' ? ' active' : ''}`}
-                onClick={() => handleNavItemClick(() => setActiveScreen('ready'))}
-              >
-                <span className="menu-icon">🧭</span>
-                <span>{t('getStarted.title', 'Get started')}</span>
+              <li className={`nav-menu-tools${activeScreen === 'ready' ? ' active' : ''}`}>
+                <button type="button" onClick={() => handleNavItemClick(() => setActiveScreen('ready'))}>
+                  <Icon name="compass" className="menu-icon" />
+                  <span>{t('getStarted.title', 'Get started')}</span>
+                </button>
               </li>
             )}
             {/* Electron only: prerequisite checks and environment preparation */}
             {hasServiceManager && (
-              <li
-                className={activeScreen === 'setup' ? 'active' : ''}
-                onClick={() => handleNavItemClick(() => setActiveScreen('setup'))}
-              >
-                <span className="menu-icon">🧰</span>
-                <span>{t('setup.title', 'Setup')}</span>
+              <li className={activeScreen === 'setup' ? 'active' : ''}>
+                <button type="button" onClick={() => handleNavItemClick(() => setActiveScreen('setup'))}>
+                  <Icon name="wrench" className="menu-icon" />
+                  <span>{t('setup.title', 'Setup')}</span>
+                </button>
               </li>
             )}
             {/* Electron only: schema-guarded editor for config.yaml and friends */}
             {hasServiceManager && (
-              <li
-                className={activeScreen === 'config' ? 'active' : ''}
-                onClick={() => handleNavItemClick(() => setActiveScreen('config'))}
-              >
-                <span className="menu-icon">🔧</span>
-                <span>{t('config.title', 'Configuration')}</span>
+              <li className={activeScreen === 'config' ? 'active' : ''}>
+                <button type="button" onClick={() => handleNavItemClick(() => setActiveScreen('config'))}>
+                  <Icon name="sliders" className="menu-icon" />
+                  <span>{t('config.title', 'Configuration')}</span>
+                </button>
               </li>
             )}
             {hasServiceManager && (
-              <li
-                className={activeScreen === 'services' ? 'active' : ''}
-                onClick={() => handleNavItemClick(() => setActiveScreen('services'))}
-              >
-                <span className="menu-icon">🖥️</span>
-                <span>{t('services.title', 'Services')}</span>
+              <li className={activeScreen === 'services' ? 'active' : ''}>
+                <button type="button" onClick={() => handleNavItemClick(() => setActiveScreen('services'))}>
+                  <Icon name="server" className="menu-icon" />
+                  <span>{t('services.title', 'Services')}</span>
+                </button>
               </li>
             )}
             {/* Electron only: the native application menu (File/Edit/View/Window) */}
             {isElectron && (
-              <li
-                className="nav-menu-app-menu"
-                onClick={() => {
-                  setIsNavMenuOpen(false);
-                  openAppMenu();
-                }}
-              >
-                <span className="menu-icon">⚙️</span>
-                <span>{t('menu.appMenu', 'Application menu')}</span>
+              <li className="nav-menu-app-menu">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsNavMenuOpen(false);
+                    openAppMenu();
+                  }}
+                >
+                  <Icon name="more" className="menu-icon" />
+                  <span>{t('menu.appMenu', 'Application menu')}</span>
+                </button>
               </li>
             )}
           </ul>
@@ -170,44 +194,31 @@ const TopPanel: React.FC<TopPanelProps> = ({
     </div>
   );
 
-  if (activeScreen === 'grading') {
-    return (
-      <header className="top-panel">
-        <div className="brand-slot">
-          {renderNavMenu()}
-          <img src={BrandSlot} alt="Intel Logo" className="logo" />
-          <span className="app-title">{t('grading.title', 'Grading')}</span>
-        </div>
-        <div className="action-slot">
-          <LanguageSwitcher />
-        </div>
-      </header>
-    );
-  }
-
-  if (activeScreen === 'content-search') {
-    return (
-      <header className="top-panel">
-        <div className="brand-slot">
-          {renderNavMenu()}
-          <img src={BrandSlot} alt="Intel Logo" className="logo" />
-          <span className="app-title">{t('contentSearch.title', 'Content Search')}</span>
-        </div>
-        <div className="action-slot">
-          <LanguageSwitcher />
-        </div>
-      </header>
-    );
-  }
+  const title =
+    activeScreen === 'grading' ? t('grading.title', 'Grading') :
+    activeScreen === 'content-search' ? t('contentSearch.title', 'Content Search') :
+    t('header.title');
 
   return (
     <header className="top-panel">
       <div className="brand-slot">
         {renderNavMenu()}
         <img src={BrandSlot} alt="Intel Logo" className="logo" />
-        <span className="app-title">{t('header.title')}</span>
+        <span className="app-title">{title}</span>
       </div>
       <div className="action-slot">
+        <div className="segmented display-toggle" role="group" aria-label={t('menu.display', 'Display')}>
+          {DISPLAY_MODES.map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              aria-pressed={display === mode}
+              onClick={() => setDisplay(mode)}
+            >
+              {t(`menu.${mode}`, mode === 'desk' ? 'Desk' : 'Board')}
+            </button>
+          ))}
+        </div>
         <LanguageSwitcher />
       </div>
     </header>

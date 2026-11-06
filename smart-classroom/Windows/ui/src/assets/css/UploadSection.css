@@ -2,7 +2,7 @@
 
 .cs-section {
   padding: 14px 14px 10px;
-  border-bottom: 1px solid #e6e7e8;
+  border-bottom: 1px solid var(--line);
 }
 
 .cs-section-header {
@@ -14,7 +14,7 @@
 .cs-section-title {
   font-size: 13px;
   font-weight: 600;
-  color: #1a1a2e;
+  color: var(--ink);
   letter-spacing: 0.04em;
   font-family: var(--font-display);
 }
@@ -22,9 +22,9 @@
 /* ─── Drop Zone ──────────────────────────────────────────── */
 
 .cs-dropzone {
-  border: 2px dashed #b0bec5;
+  border: 2px dashed var(--line-strong);
   border-radius: 8px;
-  background: #f5f8fa;
+  background: var(--paper);
   padding: 20px 12px;
   display: flex;
   flex-direction: column;
@@ -33,23 +33,22 @@
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
   text-align: center;
-  outline: none;
 }
 
 .cs-dropzone:hover,
 .cs-dropzone:focus {
-  border-color: #0071c5;
-  background: #eaf3fb;
+  border-color: var(--brand);
+  background: var(--brand-tint);
 }
 
 .cs-dropzone--active {
-  border-color: #0071c5;
-  background: #daeeff;
+  border-color: var(--brand);
+  background: var(--brand-tint);
 }
 
 .cs-dropzone-icon {
   font-size: 24px;
-  color: #0071c5;
+  color: var(--brand);
   line-height: 1;
 }
 
@@ -57,20 +56,20 @@
   margin: 0;
   font-size: 13px;
   font-weight: 500;
-  color: #37474f;
+  color: var(--ink);
   font-family: var(--font-display);
 }
 
 .cs-dropzone-hint {
   margin: 0;
   font-size: 11px;
-  color: #90a4ae;
-  font-family: var(--font-text);
+  color: var(--ink-2);
+  font-family: var(--font-body);
 }
 
 .cs-browse-btn {
   margin-top: 4px;
-  background: #0071c5;
+  background: var(--brand);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -82,13 +81,13 @@
 }
 
 .cs-browse-btn:hover {
-  background: #005fa3;
+  background: var(--brand-hover);
 }
 
 .cs-supported-types {
   margin: 6px 6px 6px 6px;
   font-size: 11px;
-  color: #000000;
+  color: var(--ink);
   text-align: left;
   pointer-events: none;
 }
@@ -101,7 +100,7 @@
   gap: 8px;
   margin: 6px 6px 0;
   padding: 8px 10px;
-  background: #fff3cd;
+  background: var(--warning-tint);
   border: 1px solid #ffc107;
   border-radius: 5px;
   animation: cs-warning-fadein 0.2s ease;
@@ -115,8 +114,8 @@
 .cs-unsupported-warning__text {
   flex: 1;
   font-size: 11px;
-  color: #7d4e00;
-  font-family: var(--font-text);
+  color: var(--warning);
+  font-family: var(--font-body);
   word-break: break-word;
 }
 
@@ -127,7 +126,7 @@
   cursor: pointer;
   font-size: 14px;
   line-height: 1;
-  color: #7d4e00;
+  color: var(--warning);
   padding: 0 2px;
   opacity: 0.7;
 }
@@ -143,31 +142,31 @@
   border-collapse: collapse;
   table-layout: fixed;
   margin-top: 12px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
 }
 
 .cs-file-table thead {
-  background: #f1f3f5;
+  background: var(--paper);
 }
 
 .cs-file-table th {
   font-size: 12px;
   font-weight: 600;
-  color: #37474f;
+  color: var(--ink);
   padding: 8px 10px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
 }
 
 .cs-file-table td {
   font-size: 12px;
   padding: 8px 10px;
-  border-bottom: 1px solid #eeeeee;
-  font-family: var(--font-text);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
   vertical-align: middle;
 }
 
@@ -176,12 +175,12 @@
 }
 
 /* Row states */
-.cs-row-staged        { background: #f8f9fa; }
-.cs-row-processing    { background: #ffffff; }
-.cs-row-completed     { background: #ffffff; }
-.cs-row-failed        { background: #fff5f5; }
-.cs-row-already_exists { background: #ffffff; }
-.cs-row-selected      { background: #eaf3fb !important; }
+.cs-row-staged        { background: var(--paper); }
+.cs-row-processing    { background: var(--surface); }
+.cs-row-completed     { background: var(--surface); }
+.cs-row-failed        { background: var(--danger-tint); }
+.cs-row-already_exists { background: var(--surface); }
+.cs-row-selected      { background: var(--brand-tint) !important; }
 
 /* Filename */
 .cs-file-name {
@@ -211,8 +210,8 @@
 /* Column widths */
 .cs-col-check  { width: 28px; text-align: center; }
 .cs-col-name   { text-align: left; }
-.cs-col-type   { width: 48px; text-align: center; color: #607d8b; font-size: 11px; }
-.cs-col-size   { width: 88px; text-align: right;  color: #607d8b; }
+.cs-col-type   { width: 48px; text-align: center; color: var(--ink-2); font-size: 11px; }
+.cs-col-size   { width: 88px; text-align: right;  color: var(--ink-2); }
 .cs-col-status { width: 108px; }
 .cs-col-remove { width: 32px; text-align: center; }
 
@@ -248,28 +247,28 @@ th.cs-col-size {
 }
 
 .cs-status-badge--staged {
-  background: #f0f4f8;
-  color: #607d8b;
+  background: var(--paper);
+  color: var(--ink-2);
 }
 
 .cs-status-badge--pending,
 .cs-status-badge--processing {
-  background: #e3f2fd;
-  color: #0071c5;
+  background: var(--brand-tint);
+  color: var(--brand);
 }
 
 .cs-status-badge--completed {
-  background: #58a15e;
+  background: var(--success);
   color: #ffffff;
 }
 
 .cs-status-badge--failed {
-  background: #ffebee;
-  color: #c62828;
+  background: var(--danger-tint);
+  color: var(--danger);
 }
 
 .cs-status-badge--already_exists {
-  background: #58a15e;
+  background: var(--success);
   color: #ffffff;
 }
 
@@ -303,7 +302,7 @@ th.cs-col-size {
 }
 
 .cs-vs-toggle-input:checked + .cs-vs-toggle-track {
-  background: #0071c5;
+  background: var(--brand);
 }
 
 .cs-vs-toggle-thumb {
@@ -312,7 +311,7 @@ th.cs-col-size {
   left: 2px;
   width: 11px;
   height: 11px;
-  background: #fff;
+  background: var(--surface);
   border-radius: 50%;
   transition: transform 0.2s;
 }
@@ -324,8 +323,8 @@ th.cs-col-size {
 .cs-vs-toggle-label {
   padding:0 0 2px;
   font-size: 10px;
-  color: #546e7a;
-  font-family: var(--font-text);
+  color: var(--ink-2);
+  font-family: var(--font-body);
 }
 
 /* ─── Summarizing Label ──────────────────────────────────── */
@@ -333,7 +332,7 @@ th.cs-col-size {
 .cs-summarizing-label {
   display: block;
   font-size: 10px;
-  color: #0071c5;
+  color: var(--brand);
   font-style: italic;
   font-weight: 500;
   margin-top: 3px;
@@ -350,7 +349,7 @@ th.cs-col-size {
 .cs-progress-track {
   width: 100%;
   height: 4px;
-  background: #e0e0e0;
+  background: var(--line);
   border-radius: 2px;
   margin-top: 4px;
   overflow: hidden;
@@ -363,14 +362,14 @@ th.cs-col-size {
 }
 
 .cs-progress-bar--animated {
-  background: #0071c5;
+  background: var(--brand);
   animation: cs-progress-pulse 1.4s ease-in-out infinite;
   background-size: 200% 100%;
   background-image: linear-gradient(90deg, #0071c5 0%, #42a5f5 50%, #0071c5 100%);
 }
 
 .cs-progress-bar--complete {
-  background: #37803a;
+  background: var(--success);
 }
 
 .cs-progress-bar--staged {
@@ -393,7 +392,7 @@ th.cs-col-size {
 
 .cs-failed-msg {
   font-size: 10px;
-  color: #c62828;
+  color: var(--danger);
   line-height: 1.3;
   word-break: break-word;
   display: -webkit-box;
@@ -405,7 +404,7 @@ th.cs-col-size {
 .cs-retry-btn {
   background: none;
   border: 1px solid #e57373;
-  color: #c62828;
+  color: var(--danger);
   border-radius: 3px;
   font-size: 10px;
   font-weight: 600;
@@ -417,7 +416,7 @@ th.cs-col-size {
 }
 
 .cs-retry-btn:hover {
-  background: #fdecea;
+  background: var(--danger-tint);
 }
 
 .cs-failed-actions {
@@ -427,12 +426,12 @@ th.cs-col-size {
 }
 
 .cs-retry-btn--remove {
-  border-color: #b0bec5;
-  color: #546e7a;
+  border-color: var(--line-strong);
+  color: var(--ink-2);
 }
 
 .cs-retry-btn--remove:hover {
-  background: #eceff1;
+  background: var(--paper);
 }
 
 .cs-remove-btn:disabled {
@@ -443,7 +442,7 @@ th.cs-col-size {
 .cs-remove-btn {
   background: none;
   border: none;
-  color: #e51111;
+  color: var(--danger);
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
@@ -452,7 +451,7 @@ th.cs-col-size {
 }
 
 .cs-remove-btn:hover {
-  color: #c62828;
+  color: var(--danger);
 }
 
 
@@ -469,10 +468,11 @@ th.cs-col-size {
 
 .cs-upload-card {
   width: 100%;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-5);
 }
 
 /* ───────── Header ───────── */
@@ -485,51 +485,52 @@ th.cs-col-size {
 }
 
 .cs-upload-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2b2b2b;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--ink);
 }
 
 /* ───────── View Files Button ───────── */
 
 .cs-view-files-btn {
-  background: #1976d2;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: white;
+  min-height: 2.5rem;
+  background: var(--surface);
+  border: 0.125rem solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 var(--shelf) 0 var(--line-strong);
+  padding: 0 var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--ink);
   cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
 }
 
 .cs-view-files-btn:hover {
-  background: #1565c0;
+  border-color: var(--ink);
 }
 
 
 /* ───────── Modern Dropzone ───────── */
 
 .cs-dropzone-modern {
-  border: 1.5px dashed #b7bcc3;
+  border: 1.5px dashed var(--line-strong);
   border-radius: 4px;
   padding: 42px 20px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #fff;
+  background: var(--surface);
 }
 
 .cs-dropzone-modern:hover {
-  border-color: #1976d2;
-  background: #fafcff;
+  border-color: var(--brand);
+  background: var(--paper);
 }
 
 .cs-dropzone-modern--active {
-  border-color: #1976d2;
-  background: #f5faff;
+  border-color: var(--brand);
+  background: var(--brand-tint);
 }
 
 .cs-dropzone-modern--disabled {
@@ -541,7 +542,7 @@ th.cs-col-size {
 
 .cs-upload-icon {
   font-size: 48px;
-  color: #6f7680;
+  color: var(--ink-2);
   margin-bottom: 12px;
   line-height: 1;
 }
@@ -551,18 +552,18 @@ th.cs-col-size {
 .cs-upload-main-text {
   margin: 0;
   font-size: 16px;
-  color: #333;
+  color: var(--ink);
   font-weight: 500;
 }
 
 .cs-upload-link-text {
   margin-top: 4px;
   font-size: 14px;
-  color: #666;
+  color: var(--ink-2);
 }
 
 .cs-upload-link-text span {
-  color: #1976d2;
+  color: var(--brand);
   font-weight: 600;
 }
 
@@ -578,7 +579,7 @@ th.cs-col-size {
 .cs-file-table td {
   padding: 10px;
   font-size: 14px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--line);
 }
 
 /* ───────── Status (duplicate block removed — see primary above) ───────── */
@@ -595,8 +596,8 @@ th.cs-col-size {
 /* ───────── Staged status badge ───────── */
 
 .cs-status-badge--staged {
-  background: #f0f0f0;
-  color: #555;
+  background: var(--paper);
+  color: var(--ink-2);
 }
 
 /* ───────── Metadata / Tag Editor Panel ───────── */
@@ -604,15 +605,15 @@ th.cs-col-size {
 .cs-meta-panel {
   margin-top: 14px;
   padding: 12px 14px;
-  background: #f7f9fc;
-  border: 1px solid #dde3ea;
+  background: var(--paper);
+  border: 1px solid var(--line);
   border-radius: 6px;
 }
 
 .cs-meta-hint {
   margin: 0;
   font-size: 12px;
-  color: #888;
+  color: var(--ink-2);
   font-style: italic;
 }
 
@@ -620,7 +621,7 @@ th.cs-col-size {
   margin: 0 0 10px;
   font-size: 13px;
   font-weight: 600;
-  color: #2b2b2b;
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -636,16 +637,15 @@ th.cs-col-size {
   width: 100%;
   padding: 6px 10px;
   font-size: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
-  outline: none;
   box-sizing: border-box;
-  background: #fff;
+  background: var(--surface);
   transition: border-color 0.15s;
 }
 
 .cs-meta-input:focus {
-  border-color: #1976d2;
+  border-color: var(--brand);
 }
 
 .cs-meta-input--pending,
@@ -656,20 +656,20 @@ th.cs-col-size {
 .cs-meta-hint--pending {
   display: block;
   margin-top: 4px;
-  color: #8a6100;
+  color: var(--warning);
   font-style: normal;
 }
 
 .cs-meta-input--tags {
-  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23999'%3E%3Cpath d='M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7a2 2 0 00.59 1.42l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.84z'/%3E%3C/svg%3E") no-repeat 10px center;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23999'%3E%3Cpath d='M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7a2 2 0 00.59 1.42l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.84z'/%3E%3C/svg%3E") no-repeat 10px center;
   padding-left: 28px;
 }
 
 .cs-meta-input:disabled {
-  background: #f4f4f4;
-  color: #aaa;
+  background: var(--paper);
+  color: var(--ink-2);
   cursor: not-allowed;
-  border-color: #e0e0e0;
+  border-color: var(--line);
 }
 
 /* ───────── Tag Chips (editor) ───────── */
@@ -684,7 +684,7 @@ th.cs-col-size {
 
 .cs-chip-file-label {
   font-size: 11px;
-  color: #888;
+  color: var(--ink-2);
   margin-right: 2px;
 }
 
@@ -692,8 +692,8 @@ th.cs-col-size {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: #e3edf8;
-  color: #1256a0;
+  background: var(--brand-tint);
+  color: var(--brand-hover);
   border-radius: 12px;
   padding: 2px 8px 2px 10px;
   font-size: 11px;
@@ -704,7 +704,7 @@ th.cs-col-size {
   background: none;
   border: none;
   cursor: pointer;
-  color: #1256a0;
+  color: var(--brand-hover);
   font-size: 13px;
   line-height: 1;
   padding: 0;
@@ -727,8 +727,8 @@ th.cs-col-size {
 }
 
 .cs-row-chip {
-  background: #e3edf8;
-  color: #1256a0;
+  background: var(--brand-tint);
+  color: var(--brand-hover);
   border-radius: 10px;
   padding: 1px 7px;
   font-size: 10px;
@@ -768,25 +768,25 @@ th.cs-col-size {
 
 .cs-clear-all-btn {
   background: none;
-  border-color: #d32f2f;
-  color: #d32f2f;
+  border-color: var(--danger);
+  color: var(--danger);
   transition: background 0.15s, color 0.15s;
 }
 
 .cs-clear-all-btn:hover {
-  background: #d32f2f;
+  background: var(--danger);
   color: #fff;
 }
 
 .cs-clear-all-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  border-color: #b0bec5;
+  border-color: var(--line-strong);
   color: #b0bec5;
 }
 
 .cs-upload-all-btn {
-  background: #0071c5;
+  background: var(--brand);
   border-color: transparent;
   color: #fff;
   font-weight: 600;
@@ -794,7 +794,7 @@ th.cs-col-size {
 }
 
 .cs-upload-all-btn:hover:not(:disabled) {
-  background: #005fa3;
+  background: var(--brand-hover);
 }
 
 .cs-upload-all-btn:disabled {
